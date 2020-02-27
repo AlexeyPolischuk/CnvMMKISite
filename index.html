@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
+        <div class="navbar-brand" >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                id="spinner-cnv" hidden></span>
+                Динамика</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div class="nav-link" type="button" id="cnv-btn">
+                        Конвертеры </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link" type="button" id="ccm-btn">
+                        МНЛЗ </div>
+                </li>
+                <li class="nav-item" hidden>
+                    <div class="nav-link" type="button" id="him-btn">
+                        Хим.Анализы</div>
+                </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        </div>
+    </nav>
+
+    <main role="main">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Сайт конвертерного цеха ММКИ</h1>
+                <p>На этом сайте вы можеnе следить за состоянием агрегатов (конвертеров и машин непрерывного литья
+                    заготовок) конвертерного цеха
+                    Мариупольского металлургического комбината им.Ильича.</p>
+                <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-4 aggregate" hidden>
+                    <h2 class="title">Конвертер 1</h2>
+                    <img src="./img/cnv/1.jpg" alt="Состояние агрегата" class="code_oper">
+                    <p class="name">Простой</p>
+                    <H4>Номер плавки <span class="pl_num">111111</span></h4>
+
+                    <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+                </div>
+            </div>
+            <hr>
+
+        </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+        <p>&copy; Company 2017-2020</p>
+    </footer>
+
+    <script src="./js/jquery-3.4.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
