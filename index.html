@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -10,12 +10,12 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
-        <div class="navbar-brand" >
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                id="spinner-cnv" hidden></span>
-                Динамика</div>
+        <div class="navbar-brand">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner"
+                hidden></span>
+            Динамика</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,12 +23,12 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <div class="nav-link" type="button" id="cnv-btn">
                         Конвертеры </div>
                 </li>
                 <li class="nav-item">
-                    <div class="nav-link" type="button" id="ccm-btn">
+                    <div class="nav-link" type="button" id="mnlz-btn">
                         МНЛЗ </div>
                 </li>
                 <li class="nav-item" hidden>
@@ -43,43 +43,67 @@
         </div>
     </nav>
 
-    <main role="main">
-        <div class="jumbotron">
+    <main role="main" class="flex-shrink-0">
+        <section class="jumbotron text-center pt-5">
             <div class="container">
-                <h1>Сайт конвертерного цеха ММКИ</h1>
-                <p>На этом сайте вы можеnе следить за состоянием агрегатов (конвертеров и машин непрерывного литья
+                <h1 class="jumbotron-heading">Сайт конвертерного цеха ММКИ</h1>
+                <p>На этом сайте вы можете следить за состоянием агрегатов (конвертеров и машин непрерывного литья
                     заготовок) конвертерного цеха
                     Мариупольского металлургического комбината им.Ильича.</p>
                 <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
             </div>
-        </div>
+        </section>
 
         <div class="container">
-            <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-4 aggregate" hidden>
+                <div class="col-md-4 cnv" hidden>
                     <h2 class="title">Конвертер 1</h2>
-                    <img src="./img/cnv/1.jpg" alt="Состояние агрегата" class="code_oper">
+                    <img src="./img/cnv/1.jpg" alt="Состояние агрегата" class="code_oper pict">
                     <p class="name">Простой</p>
-                    <H4>Номер плавки <span class="pl_num">111111</span></h4>
+                    <H4>Номер плавки <span class="pl_num">ERROR</span></h4>
 
                     <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
                 </div>
-            </div>
-            <hr>
+                <div class="col-md-6 col-lg-3 mnlz" hidden>
+                    <h2 class="title">Мнлз 1</h2>
+                    <!-- <img src="./img/mnlz/1.jpg" alt="Состояние агрегата" class="pict visual"> -->
+                    <div class="row ">
+                        <H4 class="col-12">№ плавки <span class="num_pl">111111</span></h4>
+                        <div class="col-6 border border-dark"> № в серии</div>
+                        <div class="Npl col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="col-6 border border-dark"> Скорость</div>
+                        <div class="V1 col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="col-6 border border-dark"> Длина</div>
+                        <div class=" Len1 col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="col-6 border border-dark"> Вес СК</div>
+                        <div class="Weigh col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="col-6 border border-dark"> Вес ПК</div>
+                        <div class="WeighTund col-6 text-warning bg-dark border border-white"></div>
+                        <div class="col-6 border border-dark"> Температура </div>
+                        <div class="T col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="col-6 border border-dark"> Время</div>
+                        <div class="Time col-6 text-warning bg-dark border border-white">1</div>
+                    </div>
 
-        </div> <!-- /container -->
+
+                    <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+                </div>
+
+            </div> <!-- /container -->
 
     </main>
 
-    <footer class="container">
-        <p>&copy; Company 2017-2020</p>
+    <footer class="footer mt-auto py-3 text-center">
+        <div class="container">
+        <h4>&copy; Финальный проект 2020</h4>
+        </div>
     </footer>
 
     <script src="./js/jquery-3.4.1.slim.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/script.js"></script>
+    <!-- <script src="./js/testlocaljson.js"></script> -->
 </body>
 
 </html>
