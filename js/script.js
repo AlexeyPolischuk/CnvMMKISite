@@ -1,6 +1,5 @@
 'use strict';
 let dynCnv = {
-    cnvCount: 3,
     url: 'http://localhost:8080/dyncnv',
     cnv: document.querySelector('.cnv'),
     row: document.querySelector('.row'),
@@ -9,14 +8,14 @@ let dynCnv = {
 };
 let spinner = document.querySelector(' #spinner');
 let timerIdCnv;
-function drawCnv(i, json) {
+function drawCnvItem(i, json) {
     let currentNode = dynCnv.cnv.cloneNode(true);
-    currentNode.querySelector(`.title`).innerText = `Конвертер ${i}`;
-    currentNode.querySelector(`.pl_num`).innerText = json[`PL_NUM_${i}`];
-    currentNode.querySelector(`.name`).innerText = json[`name_${i}`];
+    currentNode.querySelector(`.title`).textContent = `Конвертер ${i + 1}`;
+    currentNode.querySelector(`.pl_num`).textContent = json[`PL_NUM`];
+    currentNode.querySelector(`.name`).textContent = json[`name`];
     const src = './img/cnv/1.jpg';
-    currentNode.querySelector('.code_oper').setAttribute('src', src.replace('1', json[`code_oper_${i}`]));
-    currentNode.querySelector('.code_oper').setAttribute('alt', json[`name_${i}`]);
+    currentNode.querySelector('.code_oper').setAttribute('src', src.replace('1', json[`code_oper`]));
+    currentNode.querySelector('.code_oper').setAttribute('alt', json[`name`]);
     dynCnv.rowCashe.append(currentNode);
 };
 function showCnvDyn() {
@@ -29,18 +28,20 @@ function showCnvDyn() {
             if (!res.ok) {
                 dynCnv.url = './json/dyncnv.json';
                 return null;
-            } 
+            }
             else return res.json();
         }, err => {
             console.log(err);
-                dynCnv.url = './json/dyncnv.json';
+            dynCnv.url = './json/dyncnv.json';
+            return null;
         }
         )
         .then(json => {
-            for (let i = 1; i < dynCnv.cnvCount + 1; i++) {
-                drawCnv(i, json[0]);
-            }
-            
+            if (json)
+                json.forEach((cnv, i) => {
+                    drawCnvItem(i, cnv);
+                })
+
             dynCnv.row.innerHTML = dynCnv.rowCashe.innerHTML;
             spinner.hidden = true;
         }
@@ -49,50 +50,55 @@ function showCnvDyn() {
 
 
 let dynMnlz = {
-    mnlzCount: 4,
     url: 'http://localhost:8080/dynmnlz',
     mnlz: document.querySelector('.mnlz'),
     row: document.querySelector('.row'),
     currentNode: document.querySelector('.mnlz'),
     btn: document.querySelector(' #mnlz-btn'),
+    rowCashe: document.querySelector('.row').cloneNode(true),
 };
 let timerIdMnlz;
 function showMnlzDyn() {
-    spinner.hidden = false;     
-    let row = dynMnlz.row.cloneNode(true);
-    dynMnlz.mnlz.hidden = false;    
-    row.innerHTML = '';
+    spinner.hidden = false;
+    dynMnlz.rowCashe = dynMnlz.row.cloneNode(true);
+    dynMnlz.mnlz.hidden = false;
+    dynMnlz.rowCashe.innerHTML = '';
     fetch(dynMnlz.url)
-        .then(res => res.status != 200 ? null : res.json(), err => console.log(err)
+        .then(res => {
+            if (!res.ok) {
+                dynMnlz.url = './json/dynmnlz.json';
+                return null;
+            }
+            else return res.json();
+        }, err => {
+            console.log(err);
+            dynMnlz.url = './json/dynmnlz.json';
+            return null;
+        }
         )
         .then(json => {
-            for (let i = 0; i < dynMnlz.mnlzCount; i++) {
-                dynMnlz.currentNode = dynMnlz.mnlz.cloneNode(true);
-                dynMnlz.currentNode.querySelector(` .title`).innerText = `МНЛЗ-${i + 1}`
-                // console.log(json.filter(par => par.V1));                
-                dynMnlz.currentNode.querySelector(` .num_pl`).innerText =
-                    json.filter(par => par.V1)[0].V1[i].num_pl;
-                json.forEach(param => {
-                    drawMnlz(param, i)
+            if (json)
+                json.forEach((mnlz, i) => {
+                    drawMnlzItem(i, mnlz);
                 });
-                row.append(dynMnlz.currentNode);
-            }
-            
-            dynMnlz.row.innerHTML = row.innerHTML;
+            dynMnlz.row.innerHTML = dynMnlz.rowCashe.innerHTML;
             spinner.hidden = true;
+
         });
-};
 
+}
 
-function drawMnlz(param, i) {
-    for (const nameParam in param) {
-        let paramValue = dynMnlz.currentNode.querySelector(` .${nameParam}`);
-        if (paramValue) {
-            paramValue.innerText = param[nameParam][i].msg;
+function drawMnlzItem(i, mnlz) {
+    dynMnlz.currentNode = dynMnlz.mnlz.cloneNode(true);
+    dynMnlz.currentNode.querySelector(` .title`).textContent = `МНЛЗ-${i + 1}`;
+    for (const param in mnlz) {
+        let paramElement = dynMnlz.currentNode.querySelector(` .${param}`);
+        if (paramElement) {
+            paramElement.textContent = mnlz[param];
         }
-    };
-};
-
+    }
+    dynMnlz.rowCashe.append(dynMnlz.currentNode);
+}
 
 function showCnv(show) {
     if (show) {
@@ -124,6 +130,68 @@ function showMnlz(show) {
 };
 
 
+let him = {
+    url: 'http://localhost:8080/him',
+    analiz: document.querySelector('.him'),
+    row: document.querySelector('.row'),
+    currentNode: document.querySelector('.him'),
+    btn: document.querySelector(' #him-btn'),
+    pair: document.querySelector(` .pair`),
+};
+function showHim(show) {
+    if (show) {
+        if (!him.btn.classList.contains("active")) {
+            him.btn.classList.add("active");
+            getHim();
+        }
+    }
+    else {
+        him.btn.classList.remove("active");
+    }
+};
+function getHim() {
+    spinner.hidden = false;
+    him.rowCashe = him.row.cloneNode(true);
+    him.analiz.hidden = false;
+    him.rowCashe.innerHTML = '';
+    fetch(him.url)
+        .then(res => {
+            if (!res.ok) {
+                him.url = './json/him.json';
+                return null;
+            }
+            else return res.json();
+        }, err => {
+            console.log(err);
+            him.url = './json/him.json';
+            return null;
+        }
+        )
+        .then(json => {
+            if (json)
+                json.forEach((analiz, i) => {
+                    drawAnalizItem(i, analiz);
+                });
+            him.row.innerHTML = him.rowCashe.innerHTML;
+            spinner.hidden = true;
+
+        });
+
+}
+function drawAnalizItem(i, analiz) {
+    him.currentNode = him.analiz.cloneNode(true);
+    him.currentNode.innerHTML = '';
+    for (const element in analiz) {
+        if (analiz[element]) {
+            let currentpair = him.pair.cloneNode(true);
+            currentpair.querySelector(` .key`).textContent = element;
+            currentpair.querySelector(` .value`).textContent = analiz[element];
+            him.currentNode.append(currentpair);
+        }
+     }
+
+    him.rowCashe.append(him.currentNode);
+}
 
 
 showCnv(1);
@@ -133,11 +201,21 @@ dynMnlz.btn.addEventListener('click',
     event => {
         showCnv(0);
         showMnlz(1);
+        showHim(0);
     }
 );
 dynCnv.btn.addEventListener('click',
     event => {
-        showCnv(1);
         showMnlz(0);
+        showCnv(1);
+        showHim(0);
+    }
+);
+
+him.btn.addEventListener('click',
+    event => {
+        showMnlz(0);
+        showCnv(0);
+        showHim(1);
     }
 );

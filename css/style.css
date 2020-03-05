@@ -1,4 +1,13 @@
-
-.pict{
+.pict {
     width: 100%;
+}
+
+.key {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.value {
+    font-size: 0.6rem;
+    font-style: normal;
 }

@@ -13,8 +13,7 @@
 <body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
         <div class="navbar-brand">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner"
-                hidden></span>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner" hidden></span>
             Динамика</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +30,7 @@
                     <div class="nav-link" type="button" id="mnlz-btn">
                         МНЛЗ </div>
                 </li>
-                <li class="nav-item" hidden>
+                <li class="nav-item">
                     <div class="nav-link" type="button" id="him-btn">
                         Хим.Анализы</div>
                 </li>
@@ -44,7 +43,7 @@
     </nav>
 
     <main role="main" class="flex-shrink-0">
-        <section class="jumbotron text-center pt-5">
+        <section class=" text-center pt-5">
             <div class="container">
                 <h1 class="jumbotron-heading">Сайт конвертерного цеха ММКИ</h1>
                 <p>На этом сайте вы можете следить за состоянием агрегатов (конвертеров и машин непрерывного литья
@@ -88,14 +87,20 @@
 
                     <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
                 </div>
-
+                <div class="col-12 him row  mb-3" hidden>
+                    <div class="col-1 pair border border-1 bg-light">
+                        <div class="key text-sm border-bottom">1</div>
+                        <div class="value text-sm ">1</div>
+                    </div>
+                </div>
             </div> <!-- /container -->
 
     </main>
 
     <footer class="footer mt-auto py-3 text-center">
         <div class="container">
-        <h4>&copy; Финальный проект 2020</h4>
+            <h4>&copy; Финальный проект 2020</h4>
+            <h6>Автор Полищук Алексей</h6>
         </div>
     </footer>
 
