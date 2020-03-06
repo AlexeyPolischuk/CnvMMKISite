@@ -140,16 +140,17 @@ let him = {
     him: document.querySelector('.him'),
     btn: document.querySelector(' #him-btn'),
     pair: document.querySelector(` .pair`),
-    prevBtn: document.querySelector(` #prev`),
-    nextBtn: document.querySelector(` #next`),
     btns: document.querySelector(` #prev-next-btns`),
+    probscount: 10,
+    rowStart: 0,
+    rowEnd: 10,
 };
 
 function showHim(show) {
     $('.collapse').collapse('hide');
     if (show) {
         if (!him.btn.classList.contains("active")) {
-            him.btn.classList.add("active");           
+            him.btn.classList.add("active");
             getHim();
         }
     }
@@ -161,6 +162,7 @@ function getHim() {
     spinner.hidden = false;
     him.rowCashe = him.row.cloneNode(true);
     him.him.hidden = false;
+    him.btns.hidden = false;
     him.rowCashe.innerHTML = '';
     fetch(him.url)
         .then(res => {
@@ -178,16 +180,15 @@ function getHim() {
         .then(json => {
             if (json)
                 json.forEach((prob, i) => {
-                    drawAnalizItem(i, prob);
+                    drawHimItem(i, prob);
                 });
             him.rowCashe.append(him.btns);
             him.row.innerHTML = him.rowCashe.innerHTML;
             spinner.hidden = true;
-
         });
 
 }
-function drawAnalizItem(i, prob) {
+function drawHimItem(i, prob) {
     him.currentNode = him.prob.cloneNode(true);
     him.currentNode.innerHTML = '';
     for (const element in prob) {
@@ -197,7 +198,7 @@ function drawAnalizItem(i, prob) {
             currentpair.querySelector(` .value`).textContent = prob[element];
             him.currentNode.append(currentpair);
         }
-     }
+    }
 
     him.rowCashe.append(him.currentNode);
 }
@@ -206,25 +207,54 @@ function drawAnalizItem(i, prob) {
 showCnv(1);
 // showMnlz(true);
 
-dynMnlz.btn.addEventListener('click',
-    event => {
-        showCnv(0);
-        showMnlz(1);
-        showHim(0);
-    }
-);
-dynCnv.btn.addEventListener('click',
-    event => {
-        showMnlz(0);
-        showCnv(1);
-        showHim(0);
-    }
-);
+dynMnlz.btn.addEventListener('click', mnlzClick);
 
-him.btn.addEventListener('click',
-    event => {
-        showMnlz(0);
-        showCnv(0);
-        showHim(1);
-    }
-);
+dynCnv.btn.addEventListener('click', cnvClick);
+
+
+him.btn.addEventListener('click', himClick);
+
+document.querySelector(` main`).addEventListener('click', (e) => {
+    if (e.target.classList.contains('next')) {
+        nextPageHim();
+    };
+    if (e.target.classList.contains('prev')) {
+        him.rowStart = Math.max(him.rowStart - him.probscount - 1, 0);
+        him.rowEnd = Math.max(him.rowEnd - him.probscount - 1, him.probscount);
+        const url = him.url;
+        him.url = url + `?rowstart=${him.rowStart}&rowend=${him.rowEnd}`;
+        getHim();
+        him.url = url;
+    };
+});
+
+
+
+
+function nextPageHim() {
+    him.rowStart += him.probscount + 1;
+    him.rowEnd += him.probscount + 1;
+    const url = him.url;
+    him.url = url + `?rowstart=${him.rowStart}&rowend=${him.rowEnd}`;
+    getHim();
+    him.url = url;
+}
+
+function himClick() {
+    showMnlz(0);
+    showCnv(0);
+    showHim(1);
+}
+
+function cnvClick() {
+    showMnlz(0);
+    showCnv(1);
+    showHim(0);
+}
+
+function mnlzClick() {
+    showCnv(0);
+    showMnlz(1);
+    showHim(0);
+}
+
