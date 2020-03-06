@@ -101,6 +101,7 @@ function drawMnlzItem(i, mnlz) {
 }
 
 function showCnv(show) {
+    $('.collapse').collapse('hide');
     if (show) {
         if (!dynCnv.btn.classList.contains("active")) {
             dynCnv.btn.classList.add("active");
@@ -116,6 +117,7 @@ function showCnv(show) {
 };
 
 function showMnlz(show) {
+    $('.collapse').collapse('hide');
     if (show) {
         if (!dynMnlz.btn.classList.contains("active")) {
             dynMnlz.btn.classList.add("active");
@@ -132,16 +134,22 @@ function showMnlz(show) {
 
 let him = {
     url: 'http://localhost:8080/him',
-    analiz: document.querySelector('.him'),
+    prob: document.querySelector('.prob'),
     row: document.querySelector('.row'),
-    currentNode: document.querySelector('.him'),
+    currentNode: document.querySelector('.prob'),
+    him: document.querySelector('.him'),
     btn: document.querySelector(' #him-btn'),
     pair: document.querySelector(` .pair`),
+    prevBtn: document.querySelector(` #prev`),
+    nextBtn: document.querySelector(` #next`),
+    btns: document.querySelector(` #prev-next-btns`),
 };
+
 function showHim(show) {
+    $('.collapse').collapse('hide');
     if (show) {
         if (!him.btn.classList.contains("active")) {
-            him.btn.classList.add("active");
+            him.btn.classList.add("active");           
             getHim();
         }
     }
@@ -152,7 +160,7 @@ function showHim(show) {
 function getHim() {
     spinner.hidden = false;
     him.rowCashe = him.row.cloneNode(true);
-    him.analiz.hidden = false;
+    him.him.hidden = false;
     him.rowCashe.innerHTML = '';
     fetch(him.url)
         .then(res => {
@@ -169,23 +177,24 @@ function getHim() {
         )
         .then(json => {
             if (json)
-                json.forEach((analiz, i) => {
-                    drawAnalizItem(i, analiz);
+                json.forEach((prob, i) => {
+                    drawAnalizItem(i, prob);
                 });
+            him.rowCashe.append(him.btns);
             him.row.innerHTML = him.rowCashe.innerHTML;
             spinner.hidden = true;
 
         });
 
 }
-function drawAnalizItem(i, analiz) {
-    him.currentNode = him.analiz.cloneNode(true);
+function drawAnalizItem(i, prob) {
+    him.currentNode = him.prob.cloneNode(true);
     him.currentNode.innerHTML = '';
-    for (const element in analiz) {
-        if (analiz[element]) {
+    for (const element in prob) {
+        if (prob[element]) {
             let currentpair = him.pair.cloneNode(true);
             currentpair.querySelector(` .key`).textContent = element;
-            currentpair.querySelector(` .value`).textContent = analiz[element];
+            currentpair.querySelector(` .value`).textContent = prob[element];
             him.currentNode.append(currentpair);
         }
      }

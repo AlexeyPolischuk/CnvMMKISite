@@ -1,0 +1,166 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 290
+  Width = 343
+  object DBAsutp: TOraSession
+    Options.Direct = True
+    Username = 'mnlz'
+    Server = '10.14.14.12:1521/asutp'
+    Connected = True
+    LoginPrompt = False
+    HomeName = '10.14.14.12'
+    Left = 56
+    Top = 40
+    EncryptedPassword = '92FF91FF93FF85FF'
+  end
+  object qDynMnlz: TOraQuery
+    Session = DBAsutp
+    SQL.Strings = (
+      'WITH m1'
+      '     AS (SELECT CODE_UNIT CODE_UNIT_1,'
+      '               ID_MSG,'
+      '               to_number(MSG) MSG_1,'
+      '               PL_NUM  PL_NUM_1,'
+      '               TM_CRT  TM_CRT_1'
+      '           FROM MNLZ.V_DYN_MNLZ'
+      '          WHERE code_unit = 1),'
+      '     m2'
+      '     AS (SELECT  CODE_UNIT CODE_UNIT_2,'
+      '                ID_MSG,'
+      '             to_number(MSG)  MSG_2,'
+      '               PL_NUM  PL_NUM_2,'
+      '              TM_CRT  TM_CRT_2'
+      '           FROM MNLZ.V_DYN_MNLZ'
+      '          WHERE code_unit = 2),'
+      '     m3'
+      '     AS (SELECT CODE_UNIT CODE_UNIT_3,'
+      '                ID_MSG,'
+      '               to_number(MSG) MSG_3,'
+      '              PL_NUM  PL_NUM_3,'
+      '              TM_CRT  TM_CRT_3'
+      '           FROM MNLZ.V_DYN_MNLZ'
+      '          WHERE code_unit = 3),'
+      '     m4'
+      '     AS (SELECT CODE_UNIT CODE_UNIT_4,'
+      '                ID_MSG,'
+      '               to_number(MSG) MSG_4,'
+      '               PL_NUM PL_NUM_4,'
+      '               TM_CRT TM_CRT_4'
+      '           FROM MNLZ.V_DYN_MNLZ'
+      '          WHERE code_unit = 4)'
+      'SELECT * '
+      'from m1'
+      'full join m2 using (id_msg)'
+      'full join m3 using (id_msg)'
+      'full join m4 using (id_msg)'
+      'order by id_msg')
+    ReadOnly = True
+    CachedUpdates = True
+    Left = 149
+    Top = 40
+  end
+  object qDynCnv: TOraQuery
+    Session = DBAsutp
+    SQL.Strings = (
+      'WITH cat_oper'
+      
+        '     AS (SELECT EPP.EPP_CAT_OPER.CODE_OPER, EPP.EPP_CAT_OPER.NAM' +
+        'E'
+      '           FROM EPP.EPP_CAT_OPER'
+      '          WHERE EPP.EPP_CAT_OPER.CODE_GROUPUNIT = 30),'
+      '     cnv_dyn'
+      '     AS (SELECT CODE_UNIT,'
+      '                CODE_OPER,'
+      '                ID_MSG,'
+      '                PL_NUM'
+      '           FROM CNV.CNV_out_data'
+      '          WHERE id_msg = 272),'
+      '     cnv_1'
+      '     AS (SELECT id_msg,code_oper code_oper_1,'
+      '     code_unit code_unit_1, pl_num pl_num_1, name name_1'
+      '           FROM cnv_dyn JOIN cat_oper USING (CODE_OPER)'
+      '          WHERE code_unit = 1),'
+      '     cnv_2'
+      '     AS (SELECT id_msg,code_oper code_oper_2,'
+      '     code_unit code_unit_2, pl_num pl_num_2, name name_2'
+      '           FROM cnv_dyn JOIN cat_oper USING (CODE_OPER)'
+      '          WHERE code_unit = 2),'
+      '     cnv_3'
+      '     AS (SELECT id_msg,code_oper code_oper_3,'
+      '     code_unit code_unit_3, pl_num pl_num_3, name name_3'
+      '           FROM cnv_dyn JOIN cat_oper USING (CODE_OPER)'
+      '          WHERE code_unit = 3)'
+      'SELECT *'
+      '  FROM cnv_1'
+      '  left join cnv_2 using(id_msg)'
+      '  left join cnv_3 using(id_msg)')
+    ReadOnly = True
+    CachedUpdates = True
+    Left = 101
+    Top = 40
+  end
+  object DBHim: TOraSession
+    Options.Direct = True
+    Username = 'kkc'
+    Server = '10.14.14.220:1521/kkc'
+    Connected = True
+    LoginPrompt = False
+    HomeName = '10.14.14.12'
+    Left = 56
+    Top = 136
+    EncryptedPassword = '94FF94FF9CFF'
+  end
+  object qHim: TOraQuery
+    Session = DBHim
+    SQL.Strings = (
+      'with '
+      'him as ('
+      'select *'
+      'from probs'
+      
+        'where data>trunc(sysdate) - :days and data<trunc(sysdate) - :day' +
+        's-1'
+      ''
+      '),'
+      'himWithRowNum as (select TIPPROBY, DATA, '
+      '   NPLAV, NPROB, '
+      '   C, MN, SI, '
+      '   S, P, CR, '
+      '   NI, CU, TI, '
+      '   AL, ALSOL, AS_, '
+      '   N, W, MO, '
+      '   V, CA, NB, '
+      '   B, CO, MGO, '
+      '   CAO, SIO2, FE, '
+      '   FEOK, P2O5, AL2O3, '
+      '   MNO, OCH1,  '
+      '   SN, PB, '
+      '   ZN, '
+      ''
+      '   row_number() over(order by data desc) rn'
+      '   from him) '
+      ''
+      'select *   '
+      'from himWithRowNum'
+      'where rn  >=:rowStart  and rn  <=:rowEnd')
+    Left = 136
+    Top = 136
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'days'
+        Value = nil
+      end
+      item
+        DataType = ftInteger
+        Name = 'rowStart'
+        Value = nil
+      end
+      item
+        DataType = ftInteger
+        Name = 'rowEnd'
+        Value = nil
+      end>
+  end
+end
