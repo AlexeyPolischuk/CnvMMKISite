@@ -1,10 +1,14 @@
 'use strict';
+const interval = 30000;
 let dynCnv = {
     url: 'http://localhost:8080/dyncnv',
+    realUrl: 'http://localhost:8080/dyncnv',
+    localUrl: './json/dyncnv.json',
     cnv: document.querySelector('.cnv'),
-    row: document.querySelector('.row'),
-    rowCashe: document.querySelector('.row').cloneNode(true),
+    row: document.querySelector('#content-row'),
+    rowCashe: document.querySelector('#content-row').cloneNode(true),
     btn: document.querySelector(' #cnv-btn'),
+    errCount : 0,
 };
 let spinner = document.querySelector(' #spinner');
 let timerIdCnv;
@@ -18,7 +22,7 @@ function drawCnvItem(i, json) {
     currentNode.querySelector('.code_oper').setAttribute('alt', json[`name`]);
     dynCnv.rowCashe.append(currentNode);
 };
-function showCnvDyn() {
+function getCnvDyn() {
     spinner.hidden = false;
     dynCnv.rowCashe = dynCnv.row.cloneNode(true);
     dynCnv.cnv.hidden = false;
@@ -26,13 +30,17 @@ function showCnvDyn() {
     fetch(dynCnv.url)
         .then(res => {
             if (!res.ok) {
-                dynCnv.url = './json/dyncnv.json';
+                errCnvCatching();
                 return null;
             }
-            else return res.json();
+            else {
+                dynCnv.url = dynCnv.realUrl;
+                dynCnv.errCount = 0;
+                return res.json();
+            }
         }, err => {
             console.log(err);
-            dynCnv.url = './json/dyncnv.json';
+            errCnvCatching();
             return null;
         }
         )
@@ -47,18 +55,42 @@ function showCnvDyn() {
         }
         );
 };
+function errCnvCatching() {
+    dynCnv.url = dynCnv.localUrl;
+    dynCnv.errCount++;
+    if (dynCnv.errCount < 2)
+        getCnvDyn();
+}
 
+function showCnv(show) {
+    $('.collapse').collapse('hide');
+    if (show) {
+        if (!dynCnv.btn.classList.contains("active")) {
+            dynCnv.btn.classList.add("active");
+            getCnvDyn();
+            timerIdCnv = setInterval(getCnvDyn, interval)
+        }
+    }
+    else {
+        dynCnv.btn.classList.remove("active");
+        clearInterval(timerIdCnv);
+    }
+
+};
 
 let dynMnlz = {
     url: 'http://localhost:8080/dynmnlz',
+    realUrl: 'http://localhost:8080/dynmnlz',
+    localUrl: './json/dynmnlz.json',
     mnlz: document.querySelector('.mnlz'),
-    row: document.querySelector('.row'),
+    row: document.querySelector('#content-row'),
     currentNode: document.querySelector('.mnlz'),
     btn: document.querySelector(' #mnlz-btn'),
-    rowCashe: document.querySelector('.row').cloneNode(true),
+    rowCashe: document.querySelector('#content-row').cloneNode(true),
+    errCount: 0,
 };
 let timerIdMnlz;
-function showMnlzDyn() {
+function getMnlzDyn() {
     spinner.hidden = false;
     dynMnlz.rowCashe = dynMnlz.row.cloneNode(true);
     dynMnlz.mnlz.hidden = false;
@@ -66,13 +98,17 @@ function showMnlzDyn() {
     fetch(dynMnlz.url)
         .then(res => {
             if (!res.ok) {
-                dynMnlz.url = './json/dynmnlz.json';
+                errMnlzCatching();
                 return null;
             }
-            else return res.json();
+            else {
+                dynMnlz.url = dynMnlz.realUrl;
+                dynMnlz.errCount = 0;
+                return res.json();                
+            }
         }, err => {
             console.log(err);
-            dynMnlz.url = './json/dynmnlz.json';
+            errMnlzCatching();
             return null;
         }
         )
@@ -87,42 +123,42 @@ function showMnlzDyn() {
         });
 
 }
+function errMnlzCatching() {
+    dynMnlz.url = dynMnlz.localUrl;
+    dynMnlz.errCount++;
+    if (dynMnlz.errCount < 2)
+        getMnlzDyn();
+}
 
 function drawMnlzItem(i, mnlz) {
     dynMnlz.currentNode = dynMnlz.mnlz.cloneNode(true);
     dynMnlz.currentNode.querySelector(` .title`).textContent = `МНЛЗ-${i + 1}`;
+    let mnlzRow = dynMnlz.currentNode.querySelector('.row');
+    mnlzRow.querySelector(` .num_pl`).textContent = mnlz.num_pl;
+    delete mnlz.num_pl;
+    let paramName = mnlzRow.querySelector(` .param-name`);
+    let paramValue = mnlzRow.querySelector(` .param-value`);
     for (const param in mnlz) {
-        let paramElement = dynMnlz.currentNode.querySelector(` .${param}`);
-        if (paramElement) {
-            paramElement.textContent = mnlz[param];
-        }
+        paramName.textContent = param;
+        paramValue.textContent = mnlz[param];
+        mnlzRow.append(paramName);
+        mnlzRow.append(paramValue);
+        paramName = paramName.cloneNode(true);
+        paramValue = paramValue.cloneNode(true);
+
     }
+    dynMnlz.currentNode.append(mnlzRow);
     dynMnlz.rowCashe.append(dynMnlz.currentNode);
 }
 
-function showCnv(show) {
-    $('.collapse').collapse('hide');
-    if (show) {
-        if (!dynCnv.btn.classList.contains("active")) {
-            dynCnv.btn.classList.add("active");
-            showCnvDyn();
-            timerIdCnv = setInterval(showCnvDyn, 3000)
-        }
-    }
-    else {
-        dynCnv.btn.classList.remove("active");
-        clearInterval(timerIdCnv);
-    }
-
-};
 
 function showMnlz(show) {
     $('.collapse').collapse('hide');
     if (show) {
         if (!dynMnlz.btn.classList.contains("active")) {
             dynMnlz.btn.classList.add("active");
-            showMnlzDyn();
-            timerIdMnlz = setInterval(showMnlzDyn, 3000);
+            getMnlzDyn();
+            timerIdMnlz = setInterval(getMnlzDyn, interval);
         }
     }
     else {
@@ -134,8 +170,10 @@ function showMnlz(show) {
 
 let him = {
     url: 'http://localhost:8080/him',
+    realUrl: 'http://localhost:8080/him',
+    localUrl: './json/him.json',
     prob: document.querySelector('.prob'),
-    row: document.querySelector('.row'),
+    row: document.querySelector('#content-row'),
     currentNode: document.querySelector('.prob'),
     him: document.querySelector('.him'),
     btn: document.querySelector(' #him-btn'),
@@ -144,10 +182,12 @@ let him = {
     probscount: 10,
     rowStart: 0,
     rowEnd: 10,
+    errCount: 0,
 };
 
 function showHim(show) {
     $('.collapse').collapse('hide');
+
     if (show) {
         if (!him.btn.classList.contains("active")) {
             him.btn.classList.add("active");
@@ -167,15 +207,22 @@ function getHim() {
     fetch(him.url)
         .then(res => {
             if (!res.ok) {
-                him.url = './json/him.json';
+                him.url = him.localUrl;
+                errHimCatching();
                 return null;
             }
-            else return res.json();
-        }, err => {
-            console.log(err);
-            him.url = './json/him.json';
-            return null;
-        }
+            else {
+                him.url = him.realUrl;
+                him.errCount = 0;
+                return res.json();
+            }
+
+        },
+            err => {
+                console.log(err);
+                errHimCatching();
+                return null;
+            }
         )
         .then(json => {
             if (json)
@@ -188,6 +235,13 @@ function getHim() {
         });
 
 }
+function errHimCatching() {
+    him.url = him.localUrl;
+    him.errCount++;
+    if (him.errCount < 2)
+        getHim();
+}
+
 function drawHimItem(i, prob) {
     him.currentNode = him.prob.cloneNode(true);
     him.currentNode.innerHTML = '';
@@ -211,7 +265,6 @@ dynMnlz.btn.addEventListener('click', mnlzClick);
 
 dynCnv.btn.addEventListener('click', cnvClick);
 
-
 him.btn.addEventListener('click', himClick);
 
 document.querySelector(` main`).addEventListener('click', (e) => {
@@ -219,17 +272,21 @@ document.querySelector(` main`).addEventListener('click', (e) => {
         nextPageHim();
     };
     if (e.target.classList.contains('prev')) {
-        him.rowStart = Math.max(him.rowStart - him.probscount - 1, 0);
-        him.rowEnd = Math.max(him.rowEnd - him.probscount - 1, him.probscount);
-        const url = him.url;
-        him.url = url + `?rowstart=${him.rowStart}&rowend=${him.rowEnd}`;
-        getHim();
-        him.url = url;
+        prevPageHim();
     };
 });
 
 
 
+
+function prevPageHim() {
+    him.rowStart = Math.max(him.rowStart - him.probscount - 1, 0);
+    him.rowEnd = Math.max(him.rowEnd - him.probscount - 1, him.probscount);
+    const url = him.url;
+    him.url = url + `?rowstart=${him.rowStart}&rowend=${him.rowEnd}`;
+    getHim();
+    him.url = url;
+}
 
 function nextPageHim() {
     him.rowStart += him.probscount + 1;

@@ -1,4 +1,4 @@
-unit UDbClasses;
+п»їunit UDbClasses;
 
 interface
 
@@ -190,15 +190,15 @@ begin
   Result := TDictionary<Integer, String>.Create;
   with Result do
   begin
-    Add(250, 'V1');
+    Add(250, 'V,Рј/РјРёРЅ');
     Add(260, 'V2');
-    Add(251, 'Len1');
+    Add(251, 'L, Рј');
     Add(261, 'Len2');
-    Add(255, 'Weigh');
-    Add(254, 'T');
-    Add(252, 'Time');
-    Add(258, 'Npl');
-    Add(256, 'WeighTund');
+    Add(255, 'Р’РµСЃ РЎРљ,С‚');
+    Add(254, 'Рў Н¦ ,РЎ');
+    Add(252, 't,РјРёРЅ');
+    Add(258, 'в„– РІ СЃРµСЂ.');
+    Add(256, 'Р’РµСЃ РџРљ,С‚');
   end;
 end;
 
@@ -232,7 +232,7 @@ begin
     num := '_' + I.ToString;
     JObjValue.AddPair('PL_NUM', Query.FieldByName('PL_NUM' + num).AsString);
     name := Query.FieldByName('name' + num).AsString;
-    JObjValue.AddPair('name', ifthen(name = '', 'Простой', name));
+    JObjValue.AddPair('name', ifthen(name = '', 'РџСЂРѕСЃС‚РѕР№', name));
     code_oper := Query.FieldByName('code_oper' + num).AsString;
     JObjValue.AddPair('code_oper', ifthen(code_oper = '', '1', code_oper));
     Result.AddElement(JObjValue);
@@ -291,8 +291,8 @@ end;
   rm: Integer;
   num: string;
   begin
-  name := ['Нет дутья', 'Простой', 'Разогрев', 'Завалка', 'Продувка',
-  'Додувка 1', 'Замер/проба 1', 'Слив шлака', 'Слив стали'];
+  name := ['РќРµС‚ РґСѓС‚СЊСЏ', 'РџСЂРѕСЃС‚РѕР№', 'Р Р°Р·РѕРіСЂРµРІ', 'Р—Р°РІР°Р»РєР°', 'РџСЂРѕРґСѓРІРєР°',
+  'Р”РѕРґСѓРІРєР° 1', 'Р—Р°РјРµСЂ/РїСЂРѕР±Р° 1', 'РЎР»РёРІ С€Р»Р°РєР°', 'РЎР»РёРІ СЃС‚Р°Р»Рё'];
   codeOper := [80, 1, 2, 3, 4, 5, 20, 40, 50];
 
   FData.DisposeOf;
@@ -334,10 +334,10 @@ begin
     'CR', 'NI', 'CU', 'TI', 'AL', 'ALSOL', 'AS_', 'N', 'W', 'MO', 'V', 'CA',
     'NB', 'B', 'CO', 'MGO', 'CAO', 'SIO2', 'FE', 'FEOK', 'P2O5', 'AL2O3', 'MNO',
     'OCH1', 'SN', 'PB', 'ZN'];
-  Names := ['Тип пробы', 'Дата','Время',  '№ плавки', '№ пробы', 'C', 'Mn', 'Si', 'S', 'P',
+  Names := ['РўРёРї РїСЂРѕР±С‹', 'Р”Р°С‚Р°','Р’СЂРµРјСЏ',  'в„– РїР»Р°РІРєРё', 'в„– РїСЂРѕР±С‹', 'C', 'Mn', 'Si', 'S', 'P',
     'Cr', 'Ni', 'Cu', 'Ti', 'Al', 'AlSol', 'As', 'N', 'W', 'Mo', 'V', 'Ca',
     'Nb', 'B', 'Co', 'MgO', 'CaO', 'SiO2', 'Fe', 'FeO', 'P2O5', 'Al2O3', 'MnO',
-    'Осн.', 'Sn', 'Pb', 'Zn'];
+    'РћСЃРЅ.', 'Sn', 'Pb', 'Zn'];
     Result:=TDictionary<String,String>.Create;
     for I := 0 to Length(Keys) - 1 do
     begin

@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
         <div class="navbar-brand">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner" hidden></span>
-            Динамика</div>
+            Сайт ККЦ</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,6 @@
                         Хим.Анализы</div>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
         </div>
     </nav>
 
@@ -53,7 +49,24 @@
         </section>
 
         <div class="container">
-            <div class="row">
+            <form class="row mb-3" id="form" hidden>
+                <div class="col-12 col-md-6 col-lg-4 form-group row ">
+                    <label for="date" class=" col col-form-label">Дата</label>
+                    <input type="date" class=" col form-control" placeholder="Дата" id="date">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 form-group row ">
+                    <label for="type" class="col col-form-label">Тип пробы</label>
+                    <select class="custom-select col " name="type" id="type">
+                        <option selected>All</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <button type="button"
+                    class="btn btn-secondary form-control col-12 col-md-6 col-lg-4 mx-auto">Показать</button>
+            </form>
+            <div class="row" id="content-row">
                 <div class="col-md-4 cnv" hidden>
                     <h2 class="title">Конвертер 1</h2>
                     <img src="./img/cnv/1.jpg" alt="Состояние агрегата" class="code_oper pict">
@@ -67,41 +80,25 @@
                     <!-- <img src="./img/mnlz/1.jpg" alt="Состояние агрегата" class="pict visual"> -->
                     <div class="row ">
                         <H4 class="col-12">№ плавки <span class="num_pl">111111</span></h4>
-                        <div class="col-6 border border-dark"> № в серии</div>
-                        <div class="Npl col-6 text-warning bg-dark border border-white">1</div>
-                        <div class="col-6 border border-dark"> Скорость</div>
-                        <div class="V1 col-6 text-warning bg-dark border border-white">1</div>
-                        <div class="col-6 border border-dark"> Длина</div>
-                        <div class=" Len1 col-6 text-warning bg-dark border border-white">1</div>
-                        <div class="col-6 border border-dark"> Вес СК</div>
-                        <div class="Weigh col-6 text-warning bg-dark border border-white">1</div>
-                        <div class="col-6 border border-dark"> Вес ПК</div>
-                        <div class="WeighTund col-6 text-warning bg-dark border border-white"></div>
-                        <div class="col-6 border border-dark"> Температура </div>
-                        <div class="T col-6 text-warning bg-dark border border-white">1</div>
-                        <div class="col-6 border border-dark"> Время</div>
-                        <div class="Time col-6 text-warning bg-dark border border-white">1</div>
+                        <div class="param-name col-5 border border-dark "> № в серии</div>
+                        <div class="param-value col-7 text-warning text-center bg-dark border border-white">1</div>
                     </div>
-
-
-                    <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
                 </div>
-                <div class="him col-12 row prob border-bottom  mb-3" hidden>
-                    <div class="pair col-3 col-sm-2 col-md-1 border-bottom border-dark  bg-light">
+                <div class="him col-12 row prob border-bottom border-dark mb-3" hidden>
+                    <div class="pair col-3 col-sm-2 col-md-1 border-bottom   bg-light">
                         <div class="key border-bottom">1</div>
                         <div class="value ">1</div>
                     </div>
                 </div>
                 <div class="col-12 row" id="prev-next-btns" hidden>
-                    <div class="col-3"></div>
                     <div class="col-3">
                         <button type="button" class="btn btn-secondary btn-sm prev">
-                            <span class="carousel-control-prev-icon  prev"></span>
+                            <span class="btn carousel-control-prev-icon  prev"></span>
                         </button>
                     </div>
                     <div class=" col-3">
                         <button type="button" class="btn btn-secondary btn-sm next">
-                            <span class="carousel-control-next-icon m-auto next"></span>
+                            <span class="btn carousel-control-next-icon m-auto next"></span>
                         </button>
                     </div>
                     <div class="col-3"></div>
