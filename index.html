@@ -12,7 +12,7 @@
 <body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
         <div class="navbar-brand">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinner" hidden></span>
+            <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true" id="spinner" hidden></span>
             Сайт ККЦ</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,22 +49,30 @@
         </section>
 
         <div class="container">
-            <form class="row mb-3" id="form" hidden>
+            <form action="http://localhost:8080/him" class="row mb-3 border-bottom border-2 border-info" id="him__form"
+                hidden>
                 <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="date" class=" col col-form-label">Дата</label>
-                    <input type="date" class=" col form-control" placeholder="Дата" id="date">
+                    <label for="date" class=" col-6 col-form-label">Дата</label>
+                    <input type="date" class=" col-6 form-control" name="dt" id="him__dt">
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="type" class="col col-form-label">Тип пробы</label>
-                    <select class="custom-select col " name="type" id="type">
-                        <option selected>All</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                    <label for="type" class="col-6 col-form-label">Тип пробы</label>
+                    <select class="custom-select col-6 " name="type" id="him__type">
+                        <option value="All" selected>Все</option>
+                        <option value="По ходу">По ходу</option>
+                        <option value="Язычки">Язычки</option>
+                        <option value="Дубликаты">Дубликаты</option>
+                        <option value="Слябы">Слябы</option>
+                        <option value="Чугун">Чугун</option>
+                        <option value="Шлак КДС">Шлак КДС</option>
+                        <option value="Шлак К">Шлак К</option>
                     </select>
                 </div>
-                <button type="button"
-                    class="btn btn-secondary form-control col-12 col-md-6 col-lg-4 mx-auto">Показать</button>
+                <div class=" col-6 col-lg-4 mb-2 mx-auto">
+                    <button type="button" class="btn btn-secondary " id="him__filter">Показать
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-secondary " id="him__clear icon edit">Очистить</button>
+                </div>
             </form>
             <div class="row" id="content-row">
                 <div class="col-md-4 cnv" hidden>
@@ -72,8 +80,6 @@
                     <img src="./img/cnv/1.jpg" alt="Состояние агрегата" class="code_oper pict">
                     <p class="name">Простой</p>
                     <H4>Номер плавки <span class="pl_num">ERROR</span></h4>
-
-                    <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
                 </div>
                 <div class="col-md-6 col-lg-3 mnlz" hidden>
                     <h2 class="title">Мнлз 1</h2>
@@ -93,12 +99,10 @@
                 <div class="col-12 row" id="prev-next-btns" hidden>
                     <div class="col-3">
                         <button type="button" class="btn btn-secondary btn-sm prev">
-                            <span class="btn carousel-control-prev-icon  prev"></span>
+                            &LeftArrow; Предыдущая
                         </button>
-                    </div>
-                    <div class=" col-3">
                         <button type="button" class="btn btn-secondary btn-sm next">
-                            <span class="btn carousel-control-next-icon m-auto next"></span>
+                             Следущая   &RightArrow; 
                         </button>
                     </div>
                     <div class="col-3"></div>

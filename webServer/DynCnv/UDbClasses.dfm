@@ -119,8 +119,8 @@ object DM: TDM
       'select *'
       'from probs'
       
-        'where data>trunc(sysdate) - :days and data<trunc(sysdate) - :day' +
-        's+1'
+        'where data>trunc(sysdate)- :days and data< trunc(sysdate)- :days' +
+        '+1 '
       ''
       '),'
       'himWithRowNum as (select TIPPROBY,data,'

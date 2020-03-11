@@ -3,8 +3,8 @@ unit UDmServer;
 interface
 
 uses
-  System.SysUtils, System.Classes, uDWDatamodule, uDWAbout, uRESTDWServerEvents,
-  uDWJSONObject, uDWConsts, System.JSON;
+  System.SysUtils, uDWDatamodule, uDWAbout, uRESTDWServerEvents,
+  uDWJSONObject, uDWConsts, System.JSON, System.Classes;
 
 type
   TDMServer = class(TServerMethodDataModule)
@@ -21,6 +21,7 @@ type
     procedure apiEventshimReplyEventByType(var Params: TDWParams;
       var Result: string; const RequestType: TRequestType;
       var StatusCode: Integer; RequestHeader: TStringList);
+
   private
     { Private declarations }
   public
@@ -61,6 +62,7 @@ procedure TDMServer.apiEventshimReplyEventByType(var Params: TDWParams;
   RequestHeader: TStringList);
 var
   tp: string;
+
 begin
   inherited;
   FMain.AddLogToMemo(RequestHeader);
@@ -83,5 +85,7 @@ begin
   FMain.AddLogToMemo(RequestHeader);
   Result := '{"Версия": "' + FMain.GetVersionDate + '"}';
 end;
+
+
 
 end.
