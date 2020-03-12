@@ -36,15 +36,15 @@ object DMServer: TDMServer
             ObjectValue = ovString
             ParamName = 'days'
             Encoded = True
-            DefaultValue = '1'
+            DefaultValue = '0'
           end
           item
             TypeObject = toParam
             ObjectDirection = odINOUT
             ObjectValue = ovString
-            ParamName = 'Type'
+            ParamName = 'type'
             Encoded = True
-            DefaultValue = 'All'
+            DefaultValue = 'all'
           end
           item
             TypeObject = toParam
@@ -60,7 +60,7 @@ object DMServer: TDMServer
             ObjectValue = ovString
             ParamName = 'rowend'
             Encoded = True
-            DefaultValue = '20'
+            DefaultValue = '10'
           end>
         JsonMode = jmPureJSON
         Name = 'him'

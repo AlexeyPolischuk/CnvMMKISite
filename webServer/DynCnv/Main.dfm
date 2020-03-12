@@ -3,7 +3,7 @@ object FMain: TFMain
   Top = 0
   BorderStyle = bsSingle
   Caption = 'FMain'
-  ClientHeight = 301
+  ClientHeight = 313
   ClientWidth = 296
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object FMain: TFMain
   TextHeight = 13
   object Memo1: TMemo
     Left = 0
-    Top = 79
+    Top = 91
     Width = 296
     Height = 222
     Align = alBottom
@@ -25,6 +25,7 @@ object FMain: TFMain
       'Memo1')
     ScrollBars = ssVertical
     TabOrder = 0
+    ExplicitTop = 79
   end
   object Panel1: TPanel
     Left = 0
@@ -80,7 +81,7 @@ object FMain: TFMain
     ForceWelcomeAccess = False
     CriptOptions.Use = False
     CriptOptions.Key = 'RDWBASEKEY256'
-    MultiCORE = False
+    MultiCORE = True
     Left = 208
     Top = 248
   end

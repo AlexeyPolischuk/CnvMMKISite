@@ -23,6 +23,7 @@ type
       var StatusCode: Integer; RequestHeader: TStringList);
 
   private
+    procedure GetHimParams(var Params: TDWParams);
     { Private declarations }
   public
     { Public declarations }
@@ -60,21 +61,43 @@ end;
 procedure TDMServer.apiEventshimReplyEventByType(var Params: TDWParams;
   var Result: string; const RequestType: TRequestType; var StatusCode: Integer;
   RequestHeader: TStringList);
-var
-  tp: string;
 
 begin
   inherited;
   FMain.AddLogToMemo(RequestHeader);
-  Dm.qHim.ParamByName('days').AsString:=  Params.ItemsString['days'].AsString;
-  Dm.qHim.ParamByName('rowstart').AsString:=  Params.ItemsString['rowstart'].AsString;
-  Dm.qHim.ParamByName('rowend').AsString:=  Params.ItemsString['rowend'].AsString;
-  tp:= Params.ItemsString['type'].AsString.ToLower;
-  if tp='all' then
-  Dm.qHim.SQL[5]:='' else
-  Dm.qHim.SQL[5]:='and lower(tipproby)='''+tp+'''';
+  GetHimParams(Params);
 
   Result := DM.JsonHim.GetData.ToString;
+end;
+
+procedure TDMServer.GetHimParams(var Params: TDWParams);
+var
+  tp: string;
+  npl: Integer;
+begin
+  DM.qHim.ParamByName('rowstart').AsString := Params.ItemsString
+    ['rowstart'].AsString;
+  DM.qHim.ParamByName('rowend').AsString := Params.ItemsString
+    ['rowend'].AsString;
+  npl := Params.ItemsString['npl'].AsInteger;
+  if (npl = 0) or not(trunc(npl / 100000) in [1, 2, 3]) then
+  begin
+    DM.qHim.SQL[4] :=
+      'where data>trunc(sysdate)- :days and data< trunc(sysdate)- :days+1';
+    DM.qHim.ParamByName('days').AsString := Params.ItemsString['days'].AsString;
+  end
+  else
+  begin
+    DM.qHim.SQL[4] := 'where nplav=' + npl.ToString;
+  end;
+
+  tp := Params.ItemsString['type'].AsString.ToLower;
+  if tp = 'all' then
+    DM.qHim.SQL[5] := ''
+  else
+    DM.qHim.SQL[5] := 'and lower(tipproby)=''' + tp + '''';
+  tp := Params.ItemsString['type'].AsString.ToLower;
+
 end;
 
 procedure TDMServer.apiEventsverReplyEventByType(var Params: TDWParams;
@@ -85,7 +108,5 @@ begin
   FMain.AddLogToMemo(RequestHeader);
   Result := '{"Версия": "' + FMain.GetVersionDate + '"}';
 end;
-
-
 
 end.

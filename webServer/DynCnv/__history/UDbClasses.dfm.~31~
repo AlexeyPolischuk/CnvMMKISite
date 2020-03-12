@@ -114,15 +114,67 @@ object DM: TDM
   object qHim: TOraQuery
     Session = DBHim
     SQL.Strings = (
+      'with '
+      'him as ('
       'select *'
       'from probs'
-      'where data=trunc(sysdate) -:days')
+      
+        'where data>trunc(sysdate)- :days and data< trunc(sysdate)- :days' +
+        '+1 '
+      ''
+      ''
+      '),'
+      'himWithRowNum as (select TIPPROBY,data,'
+      '   NPLAV, NPROB, '
+      '   C, MN, SI, '
+      '   S, P, CR, '
+      '   NI, CU, TI, '
+      '   AL, ALSOL, AS_, '
+      '   N, W, MO, '
+      '   V, CA, NB, '
+      '   B, CO, MGO, '
+      '   CAO, SIO2, FE, '
+      '   FEOK, P2O5, AL2O3, '
+      '   MNO, OCH1,  '
+      '   SN, PB, '
+      '   ZN, '
+      ''
+      '   row_number() over(order by data desc) rn'
+      '   from him) '
+      ''
+      'select  TIPPROBY,  to_char(DATA,'#39'dd.mm.yyyy'#39') dt, '
+      '   to_char(DATA,'#39'HH24:Mi'#39') tm, '
+      '   NPLAV, NPROB, '
+      '   C, MN, SI, '
+      '   S, P, CR, '
+      '   NI, CU, TI, '
+      '   AL, ALSOL, AS_, '
+      '   N, W, MO, '
+      '   V, CA, NB, '
+      '   B, CO, MGO, '
+      '   CAO, SIO2, FE, '
+      '   FEOK, P2O5, AL2O3, '
+      '   MNO, OCH1,  '
+      '   SN, PB, '
+      '   ZN   '
+      'from himWithRowNum'
+      'where rn  >=:rowStart  and rn  <=:rowEnd')
     Left = 136
     Top = 136
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'days'
+        Value = nil
+      end
+      item
+        DataType = ftInteger
+        Name = 'rowStart'
+        Value = nil
+      end
+      item
+        DataType = ftInteger
+        Name = 'rowEnd'
         Value = nil
       end>
   end

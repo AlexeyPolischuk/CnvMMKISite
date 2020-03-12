@@ -61,6 +61,14 @@ object DMServer: TDMServer
             ParamName = 'rowend'
             Encoded = True
             DefaultValue = '10'
+          end
+          item
+            TypeObject = toParam
+            ObjectDirection = odINOUT
+            ObjectValue = ovString
+            ParamName = 'npl'
+            Encoded = True
+            DefaultValue = '0'
           end>
         JsonMode = jmPureJSON
         Name = 'him'

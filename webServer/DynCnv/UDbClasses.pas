@@ -191,9 +191,9 @@ begin
   with Result do
   begin
     Add(250, 'V,м/мин');
-    Add(260, 'V2');
+//    Add(260, 'V2');
     Add(251, 'L, м');
-    Add(261, 'Len2');
+//    Add(261, 'Len2');
     Add(255, 'Вес СК,т');
     Add(254, 'Т ͦ ,С');
     Add(252, 't,мин');

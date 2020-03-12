@@ -21,8 +21,9 @@ type
     procedure apiEventshimReplyEventByType(var Params: TDWParams;
       var Result: string; const RequestType: TRequestType;
       var StatusCode: Integer; RequestHeader: TStringList);
-    procedure ServerMethodDataModuleCreate(Sender: TObject);
+
   private
+    procedure GetHimParams(var Params: TDWParams);
     { Private declarations }
   public
     { Public declarations }
@@ -35,7 +36,7 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses Main, UDbClasses, System.Classes;
+uses Main, UDbClasses;
 
 {$R *.dfm}
 
@@ -60,21 +61,34 @@ end;
 procedure TDMServer.apiEventshimReplyEventByType(var Params: TDWParams;
   var Result: string; const RequestType: TRequestType; var StatusCode: Integer;
   RequestHeader: TStringList);
-var
-  tp: string;
-  dt: Variant;
+
 begin
   inherited;
   FMain.AddLogToMemo(RequestHeader);
-  Dm.qHim.ParamByName('dt').AsDate:=  Params.ItemsString['dt'].AsDate;
-  Dm.qHim.ParamByName('rowstart').AsString:=  Params.ItemsString['rowstart'].AsString;
-  Dm.qHim.ParamByName('rowend').AsString:=  Params.ItemsString['rowend'].AsString;
-  tp:= Params.ItemsString['type'].AsString.ToLower;
-  if tp='all' then
-  Dm.qHim.SQL[5]:='' else
-  Dm.qHim.SQL[5]:='and lower(tipproby)='''+tp+'''';
+  GetHimParams(Params);
 
   Result := DM.JsonHim.GetData.ToString;
+end;
+
+procedure TDMServer.GetHimParams(var Params: TDWParams);
+var
+  tp: string;
+  npl: Integer;
+begin
+  Dm.qHim.ParamByName('days').AsString := Params.ItemsString['days'].AsString;
+  Dm.qHim.ParamByName('rowstart').AsString := Params.ItemsString['rowstart'].AsString;
+  Dm.qHim.ParamByName('rowend').AsString := Params.ItemsString['rowend'].AsString;
+  tp := Params.ItemsString['type'].AsString.ToLower;
+  if tp = 'all'  then
+    Dm.qHim.SQL[5] := ''
+  else
+    Dm.qHim.SQL[5] := 'and lower(tipproby)=''' + tp + '''';
+      tp := Params.ItemsString['type'].AsString.ToLower;
+   npl := Params.ItemsString['npl'].AsInteger;
+  if (npl = 0) or not(trunc(npl/100000) in [1,2,3]) then
+    Dm.qHim.SQL[6] := ''
+  else
+    Dm.qHim.SQL[6] := 'and nplav=' + npl.ToString;
 end;
 
 procedure TDMServer.apiEventsverReplyEventByType(var Params: TDWParams;
@@ -86,10 +100,6 @@ begin
   Result := '{"Версия": "' + FMain.GetVersionDate + '"}';
 end;
 
-procedure TDMServer.ServerMethodDataModuleCreate(Sender: TObject);
-begin
-  inherited;
-api.Events.EventByName['him'].DWParams.ParamByName['dt'].DefaultValue:=Date.toString;
-end;
+
 
 end.

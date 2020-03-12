@@ -44,6 +44,7 @@ let him = {
         rowEnd: 10,
         type: "All",
         days: 0,
+        npl: 0,
     },
     errCount: 0,
     form: document.querySelector(` #him__form`),
@@ -62,21 +63,39 @@ dynCnv.btn.addEventListener('click', cnvClick);
 
 him.btn.addEventListener('click', himClick);
 
-document.querySelector(` main`).addEventListener('click', (e) => {
+him.btn.addEventListener('click', himClick);
+
+him.form.querySelector('#him__npl').addEventListener('keydown', e => inputKeyPress(e));
+
+document.querySelector(` main`).addEventListener('click', e => mainClick(e));
+
+
+
+function inputKeyPress(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        filterHim();
+    }
+};
+
+function mainClick(e) {
     if (e.target.classList.contains('next')) {
         nextPageHim();
-    };
+    }
+    ;
     if (e.target.classList.contains('prev')) {
         prevPageHim();
-    };
+    }
+    ;
     if (e.target.getAttribute('id') === 'him__filter') {
         filterHim();
-    };
+    }
+    ;
     if (e.target.getAttribute('id') === 'him__clear') {
         clearFilterHim();
-    };
-});
-
+    }
+    ;
+};
 
 
 //////////////////////////////////////////////////////////////
@@ -105,8 +124,8 @@ function mnlzClick() {
 function clearFilterHim() {
     him.params.rowStart = 0;
     him.params.rowEnd = 10;
-    him.form.querySelector('#him__type').value='All';
-    him.form.querySelector('#him__dt').value='';
+    him.form.querySelector('#him__type').value = 'All';
+    him.form.querySelector('#him__dt').value = '';
     him.url = him.realUrl;
     getHim();
 }
@@ -115,13 +134,27 @@ function clearFilterHim() {
 function filterHim() {
     him.params.rowStart = 0;
     him.params.rowEnd = 10;
+
     him.params.type = him.form.querySelector('#him__type').value;
+
     const dt = him.form.querySelector('#him__dt').value;
     if (dt) {
-        him.params.days = Math.floor(((new Date()) - (new Date(dt)) )/ 86400000);
+        him.params.days = Math.floor(((new Date()) - (new Date(dt))) / 86400000);
     } else him.params.days = 0;
 
-    him.url = him.realUrl + `type=${him.params.type}&days=${him.params.days}&`
+    const plInput = him.form.querySelector('#him__npl');
+    const npl = plInput.value;
+    if ((npl < 100000 || npl >= 400000) & (npl !== '')) {
+        him.params.npl = 0;
+        if (!plInput.classList.contains('warning'))
+            plInput.classList.add('warning');
+    } else {
+        him.params.npl = npl;
+        if (plInput.classList.contains('warning'))
+            plInput.classList.remove('warning');
+    }
+
+    him.url = him.realUrl + `type=${him.params.type}&days=${him.params.days}&npl=${him.params.npl}&`
     getHim();
 }
 

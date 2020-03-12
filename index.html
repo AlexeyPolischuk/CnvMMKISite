@@ -49,14 +49,17 @@
         </section>
 
         <div class="container">
-            <form action="http://localhost:8080/him" class="row mb-3 border-bottom border-2 border-info" id="him__form"
-                hidden>
+            <form action="" class="row mb-3 border-bottom border-2 border-info" id="him__form" hidden>
                 <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="date" class=" col-6 col-form-label">Дата</label>
+                    <label for="him__npl" class=" col-6 col-form-label">№ плавки</label>
+                    <input type="number" min="100000" max="399999" class=" col-6 form-control" name="npl" id="him__npl">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 form-group row ">
+                    <label for="him__dt" class=" col-6 col-form-label">Дата</label>
                     <input type="date" class=" col-6 form-control" name="dt" id="him__dt">
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="type" class="col-6 col-form-label">Тип пробы</label>
+                    <label for="him__type" class="col-6 col-form-label">Тип пробы</label>
                     <select class="custom-select col-6 " name="type" id="him__type">
                         <option value="All" selected>Все</option>
                         <option value="По ходу">По ходу</option>
@@ -68,10 +71,9 @@
                         <option value="Шлак К">Шлак К</option>
                     </select>
                 </div>
-                <div class=" col-6 col-lg-4 mb-2 mx-auto">
-                    <button type="button" class="btn btn-secondary " id="him__filter">Показать
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-                    <button type="button" class="btn btn-secondary " id="him__clear icon edit">Очистить</button>
+                <div class="col-12  col-lg-4 mb-2 mx-lg-auto ">
+                    <button type="button" class="btn btn-secondary btn-sm " id="him__filter">Показать </button>
+                    <button type="button" class="btn btn-secondary btn-sm " id="him__clear">Очистить</button>
                 </div>
             </form>
             <div class="row" id="content-row">
@@ -102,7 +104,7 @@
                             &LeftArrow; Предыдущая
                         </button>
                         <button type="button" class="btn btn-secondary btn-sm next">
-                             Следущая   &RightArrow; 
+                            Следущая &RightArrow;
                         </button>
                     </div>
                     <div class="col-3"></div>

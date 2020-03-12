@@ -23,6 +23,7 @@ type
       var StatusCode: Integer; RequestHeader: TStringList);
 
   private
+    procedure GetHimParams(var Params: TDWParams);
     { Private declarations }
   public
     { Public declarations }
@@ -60,24 +61,34 @@ end;
 procedure TDMServer.apiEventshimReplyEventByType(var Params: TDWParams;
   var Result: string; const RequestType: TRequestType; var StatusCode: Integer;
   RequestHeader: TStringList);
-var
-  tp: string;
-  dt: Variant;
+
 begin
   inherited;
   FMain.AddLogToMemo(RequestHeader);
-  dt:=    Params.ItemsString['dt'].Value;
-  if dt.isNull then
-  Dm.qHim.ParamByName('dt').AsDate:=  Date else
-  Dm.qHim.ParamByName('dt').AsDate:=  dt.AsDate;
-  Dm.qHim.ParamByName('rowstart').AsString:=  Params.ItemsString['rowstart'].AsString;
-  Dm.qHim.ParamByName('rowend').AsString:=  Params.ItemsString['rowend'].AsString;
-  tp:= Params.ItemsString['type'].AsString.ToLower;
-  if tp='all' then
-  Dm.qHim.SQL[5]:='' else
-  Dm.qHim.SQL[5]:='and lower(tipproby)='''+tp+'''';
+  GetHimParams(Params);
 
   Result := DM.JsonHim.GetData.ToString;
+end;
+
+procedure TDMServer.GetHimParams(var Params: TDWParams);
+var
+  tp: string;
+  npl: Integer;
+begin
+  Dm.qHim.ParamByName('days').AsString := Params.ItemsString['days'].AsString;
+  Dm.qHim.ParamByName('rowstart').AsString := Params.ItemsString['rowstart'].AsString;
+  Dm.qHim.ParamByName('rowend').AsString := Params.ItemsString['rowend'].AsString;
+  tp := Params.ItemsString['type'].AsString.ToLower;
+  if tp = 'all'  then
+    Dm.qHim.SQL[5] := ''
+  else
+    Dm.qHim.SQL[5] := 'and lower(tipproby)=''' + tp + '''';
+      tp := Params.ItemsString['type'].AsString.ToLower;
+   npl := Params.ItemsString['npl'].AsInteger;
+  if (npl = 0) or not(trunc(npl/100000) in [1,2,3]) then
+    Dm.qHim.SQL[5] := ''
+  else
+    Dm.qHim.SQL[5] := 'and nplav=' + npl.ToString;
 end;
 
 procedure TDMServer.apiEventsverReplyEventByType(var Params: TDWParams;
