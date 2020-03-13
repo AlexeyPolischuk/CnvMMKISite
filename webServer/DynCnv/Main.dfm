@@ -25,7 +25,6 @@ object FMain: TFMain
       'Memo1')
     ScrollBars = ssVertical
     TabOrder = 0
-    ExplicitTop = 79
   end
   object Panel1: TPanel
     Left = 0
@@ -52,7 +51,7 @@ object FMain: TFMain
       Height = 21
       NumbersOnly = True
       TabOrder = 1
-      Text = '8080'
+      Text = '8081'
     end
   end
   object RESTServicePooler1: TRESTServicePooler
@@ -66,7 +65,7 @@ object FMain: TFMain
         'Access-Control-Allow-Headers:Content-Type, Origin, Accept, Autho' +
         'rization, X-CUSTOM-HEADER')
     RequestTimeout = -1
-    ServicePort = 8080
+    ServicePort = 8081
     ProxyOptions.Port = 8888
     ServerParams.HasAuthentication = False
     ServerParams.UserName = 'testserver'

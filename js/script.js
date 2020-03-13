@@ -1,8 +1,8 @@
 'use strict';
 const interval = 30000;
 let dynCnv = {
-    url: 'http://localhost:8080/dyncnv',
-    realUrl: 'http://localhost:8080/dyncnv',
+    url: 'http://10.14.14.250:8081/dyncnv',
+    realUrl: 'http://10.14.14.250:8081/dyncnv',
     localUrl: './json/dyncnv.json',
     cnv: document.querySelector('.cnv'),
     row: document.querySelector('#content-row'),
@@ -14,8 +14,8 @@ let spinner = document.querySelector(' #spinner');
 let timerIdCnv;
 /////////////////////////////////////////////
 let dynMnlz = {
-    url: 'http://localhost:8080/dynmnlz',
-    realUrl: 'http://localhost:8080/dynmnlz',
+    url: 'http://10.14.14.250:8081/dynmnlz',
+    realUrl: 'http://10.14.14.250:8081/dynmnlz',
     localUrl: './json/dynmnlz.json',
     mnlz: document.querySelector('.mnlz'),
     row: document.querySelector('#content-row'),
@@ -28,8 +28,8 @@ let timerIdMnlz;
 /////////////////////////////////////////////////////////
 
 let him = {
-    url: 'http://localhost:8080/him?',
-    realUrl: 'http://localhost:8080/him?',
+    url: 'http://10.14.14.250:8081/him?',
+    realUrl: 'http://10.14.14.250:8081/him?',
     localUrl: './json/him.json',
     prob: document.querySelector('.prob'),
     row: document.querySelector('#content-row'),
