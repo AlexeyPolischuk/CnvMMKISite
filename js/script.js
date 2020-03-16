@@ -1,58 +1,14 @@
 'use strict';
 const interval = 30000;
-let dynCnv = {
-    url: 'http://10.14.14.250:8081/dyncnv',
-    realUrl: 'http://10.14.14.250:8081/dyncnv',
-    localUrl: './json/dyncnv.json',
-    cnv: document.querySelector('.cnv'),
-    row: document.querySelector('#content-row'),
-    rowCashe: document.querySelector('#content-row').cloneNode(true),
-    btn: document.querySelector(' #cnv-btn'),
-    errCount: 0,
-};
+const serverUrl = 'http://10.14.14.250:8081/';
+let dynCnv;
 let spinner = document.querySelector(' #spinner');
 let timerIdCnv;
-/////////////////////////////////////////////
-let dynMnlz = {
-    url: 'http://10.14.14.250:8081/dynmnlz',
-    realUrl: 'http://10.14.14.250:8081/dynmnlz',
-    localUrl: './json/dynmnlz.json',
-    mnlz: document.querySelector('.mnlz'),
-    row: document.querySelector('#content-row'),
-    currentNode: document.querySelector('.mnlz'),
-    btn: document.querySelector(' #mnlz-btn'),
-    rowCashe: document.querySelector('#content-row').cloneNode(true),
-    errCount: 0,
-};
+let dynMnlz;
 let timerIdMnlz;
-/////////////////////////////////////////////////////////
-
-let him = {
-    url: 'http://10.14.14.250:8081/him?',
-    realUrl: 'http://10.14.14.250:8081/him?',
-    localUrl: './json/him.json',
-    prob: document.querySelector('.prob'),
-    row: document.querySelector('#content-row'),
-    currentNode: document.querySelector('.prob'),
-    him: document.querySelector('.him'),
-    btn: document.querySelector(' #him-btn'),
-    pair: document.querySelector(` .pair`),
-    btns: document.querySelector(` #prev-next-btns`),
-    probscount: 10,
-    params: {
-        rowStart: 0,
-        rowEnd: 10,
-        type: "All",
-        days: 0,
-        npl: 0,
-    },
-    errCount: 0,
-    form: document.querySelector(` #him__form`),
-
-};
-
-
-
+let him;
+let email;
+initVars();
 
 showCnv(1);
 // showMnlz(true);
@@ -69,6 +25,137 @@ him.form.querySelector('#him__npl').addEventListener('keydown', e => inputKeyPre
 
 document.querySelector(` main`).addEventListener('click', e => mainClick(e));
 
+document.querySelector(` footer`).addEventListener('click', e => footerClick(e));
+
+
+
+
+
+function initVars() {
+    dynCnv = {
+        url: serverUrl + 'dyncnv',
+        realUrl: serverUrl + 'dyncnv',
+        localUrl: './json/dyncnv.json',
+        cnv: document.querySelector('.cnv'),
+        row: document.querySelector('#content-row'),
+        rowCashe: document.querySelector('#content-row').cloneNode(true),
+        btn: document.querySelector(' #cnv-btn'),
+        errCount: 0,
+    };
+    dynMnlz = {
+        url: serverUrl + 'dynmnlz',
+        realUrl: serverUrl + 'dynmnlz',
+        localUrl: './json/dynmnlz.json',
+        mnlz: document.querySelector('.mnlz'),
+        row: document.querySelector('#content-row'),
+        currentNode: document.querySelector('.mnlz'),
+        btn: document.querySelector(' #mnlz-btn'),
+        rowCashe: document.querySelector('#content-row').cloneNode(true),
+        errCount: 0,
+    };
+    him = {
+        url: serverUrl + 'him?',
+        realUrl: serverUrl + 'him?',
+        localUrl: './json/him.json',
+        prob: document.querySelector('.prob'),
+        row: document.querySelector('#content-row'),
+        currentNode: document.querySelector('.prob'),
+        him: document.querySelector('.him'),
+        btn: document.querySelector(' #him-btn'),
+        pair: document.querySelector(` .pair`),
+        btns: document.querySelector(` #prev-next-btns`),
+        probscount: 10,
+        params: {
+            rowStart: 0,
+            rowEnd: 10,
+            type: "All",
+            days: 0,
+            npl: 0,
+        },
+        errCount: 0,
+        form: document.querySelector(` #him__form`),
+
+    };
+    email = {
+        btn: document.querySelector('#email__btn'),
+        sndBtn: document.querySelector('#email__send'),
+        form: document.querySelector('#email__form'),
+        name: document.querySelector('#email__name'),
+        contact: document.querySelector('#email__contact'),
+        msg: document.querySelector('#email__message'),
+        error: document.querySelector('#email__error'),
+    }
+}
+
+
+function sendEmail(body, then, error) {
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "lol.for.tel@gmail.com",
+        Password: "BDA249DC69FBB4BAB7F7EFC3B12CF871C7C2",
+        To: "lol.for.tel@gmail.com",
+        From: "lol.for.tel@gmail.com",
+        Subject: "feedback from cnvMmki site",
+        Body: body,
+    }).then(message => {
+        if (message == 'OK')
+        { then(); }
+        else
+        { error(); }
+    })
+
+}
+
+//////////////////////////////////////////////////////////////
+////////////////////Events////////////////////////////////////
+
+function footerClick(e) {
+    if (e.target.getAttribute('id') === 'email__btn') {
+        clickEmailBtn(e);
+    }
+    if (e.target.getAttribute('id') === 'email__send') {
+        clickEmailSendBtn(e);
+
+    }
+
+}
+
+function clickEmailSendBtn(e) {
+    e.preventDefault();
+    if ((email.msg.value !== '') & (email.contact.value !== '')) {
+        let body = `
+        Имя 
+
+        ${email.name.value} 
+        Контакты
+
+        ${email.contact.value}
+        Сообщение 
+
+        ${email.msg.value}     `;
+
+        sendEmail(body, () => {
+            email.btn.hidden = false;
+            email.form.hidden = true;
+            email.error.hidden = true;
+            email.form.reset();
+        }, () => {
+            email.error.textContent = `Ошибка в отправке. Повтрите позже `;
+            email.error.hidden = false;
+        });
+
+    }
+    else {
+        email.error.textContent = `Введите клнтакты и сообщешие `
+        email.error.hidden = false;
+    }
+}
+
+function clickEmailBtn(e) {
+    e.preventDefault();
+    email.btn.hiddenn = true;
+    email.form.hidden = false;
+}
 
 
 function inputKeyPress(e) {
@@ -98,9 +185,6 @@ function mainClick(e) {
 };
 
 
-//////////////////////////////////////////////////////////////
-////////////////////Events////////////////////////////////////
-
 
 
 function himClick() {
@@ -121,11 +205,14 @@ function mnlzClick() {
     showHim(0);
 }
 
+
+//////////////////////////////////////////////////////////////
+////////////////////him////////////////////////////////////
+
 function clearFilterHim() {
     him.params.rowStart = 0;
     him.params.rowEnd = 10;
-    him.form.querySelector('#him__type').value = 'All';
-    him.form.querySelector('#him__dt').value = '';
+    him.form.reset();
     him.url = him.realUrl;
     getHim();
 }
@@ -176,9 +263,6 @@ function nextPageHim() {
     him.url = url;
 }
 
-
-//////////////////////////////////////////////////////////////
-////////////////////him////////////////////////////////////
 
 function showHim(show) {
     $('.collapse').collapse('hide');

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <script src=" https://smtpjs.com/v3/smtp.js"></script>
+    <base target="_blank">
     <title>Сайт конвертерного цеха ММКИ</title>
 </head>
 
@@ -33,22 +35,21 @@
                     <div class="nav-link" type="button" id="him-btn">
                         Хим.Анализы</div>
                 </li>
-                    <li class="nav-item">
+                <!-- <li class="nav-item">
                         <a href="FTP.htm" class="nav-link" >
                             FTP сервер</a>
-                    </li>
+                    </li> -->
             </ul>
         </div>
     </nav>
 
-    <main role="main" class="flex-shrink-0 ">
+    <main role="main" class="flex-shrink-0 mb-3">
         <section class=" text-center pt-5">
             <div class="container">
                 <h1 class="jumbotron-heading">Сайт конвертерного цеха ММКИ</h1>
                 <p>На этом сайте вы можете следить за состоянием агрегатов (конвертеров и машин непрерывного литья
                     заготовок) конвертерного цеха
                     Мариупольского металлургического комбината им.Ильича.</p>
-                <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
             </div>
         </section>
 
@@ -91,9 +92,9 @@
                     <h2 class="title">Мнлз 1</h2>
                     <!-- <img src="./img/mnlz/1.jpg" alt="Состояние агрегата" class="pict visual"> -->
                     <div class="row ">
-                        <H4 class="col-12">№ плавки <span class="num_pl">111111</span></h4>
+                        <H4 class="col-12">№ плавки <span class="num_pl">ERROR</span></h4>
                         <div class="param-name col-5 border border-dark "> № в серии</div>
-                        <div class="param-value col-7 text-warning text-center bg-dark border border-white">1</div>
+                        <div class="param-value col-7 text-warning text-center bg-dark border border-white">ERROR</div>
                     </div>
                 </div>
                 <div class="him col-12 row prob border-bottom border-dark mb-3" hidden>
@@ -107,22 +108,60 @@
                         <button type="button" class="btn btn-secondary btn-sm prev">
                             &LeftArrow; Предыдущая
                         </button>
-                        <button type="button" class="btn btn-secondary btn-sm next">
+                        <button type="button" class="btn btn-secondary btn-sm next ">
                             Следущая &RightArrow;
                         </button>
                     </div>
-                   
+
                 </div>
             </div>
-        </div>
-        </div> <!-- /container -->
+        </div><!-- /container -->
 
     </main>
 
-    <footer class="footer mt-auto py-3 text-center">
+    <footer class="footer mt-auto bg-dark text-light">
         <div class="container">
-            <h4>&copy; Финальный проект 2020</h4>
-            <h6>Автор Полищук Алексей</h6>
+            <!-- <h4>&copy; Финальный проект 2020</h4>
+            <h6>Автор Полищук Алексей</h6> -->
+            <div class="row">
+                <div class="col-6 col-lg-4 mb-2">
+                    <h5 class="">Отзывы и предложения</h5>
+                    <button type="button" class="btn btn-secondary btn-sm" id="email__btn" >Написать</button>
+                </div>
+                <div class="col-6 col-lg-4 mb-2">
+                    <h5>Contacts</h5>
+                    <a href="linkedin.com/in/aleksey-polischuk-007b2b149" class="btn-dark d-block ">
+                        <img width="20px" src="./img/linkedin-svgrepo-com.svg" alt="linkedin logo"> LinledIn</a>
+                </div>
+                <div class="col-6 col-lg-4 mb-2">
+                    <h5>My projects</h5>
+                    <a href="https://github.com/lelikP/CnvMMKISite" class="btn-dark  d-block ">
+                        <img width="20px" src="./img/github.svg" alt="github logo"> Source of site</a>
+                    <a href="https://github.com/lelikP?tab=repositories" class="btn-dark  d-block ">
+                        <img width="20px" src="./img/github.svg" alt="github logo"> Other projects</a>
+
+                </div>
+
+            </div>
+            <form action="" class="my-3 row" id="email__form"hidden>
+                <div class=" col-12 col-md-6">
+                    <div class=" form-group">
+                        <label for="email__name">Ваше имя</label>
+                        <input type="text" class="form-control form-control-sm" id="email__name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email__contact">Контакты(телефон, e-mail)</label>
+                        <input type="text" class="form-control form-control-sm" id="email__contact">
+                    </div>
+                    <div class="form-group">
+                        <label for="email__message">Сообщение</label>
+                        <textarea class="form-control form-control-sm"  rows="6" id="email__message">
+                    </textarea>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" id="email__send">Отправить</button>
+                   <small class="warning" id="email__error" hidden >Ошибка в отправке</small>
+                </div>
+            </form>
         </div>
     </footer>
 
