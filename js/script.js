@@ -1,6 +1,6 @@
 'use strict';
 const interval = 30000;
-const serverUrl = 'http://10.14.14.250:8081/';
+const serverUrl = 'http://10.14.14.251:8081/';
 let dynCnv;
 let spinner = document.querySelector(' #spinner');
 let timerIdCnv;
@@ -98,10 +98,8 @@ function sendEmail(body, then, error) {
         Subject: "feedback from cnvMmki site",
         Body: body,
     }).then(message => {
-        if (message == 'OK')
-        { then(); }
-        else
-        { error(); }
+        if (message == 'OK') { then(); }
+        else { error(); }
     })
 
 }
@@ -146,7 +144,7 @@ function clickEmailSendBtn(e) {
 
     }
     else {
-        email.error.textContent = `Введите клнтакты и сообщешие `
+        email.error.textContent = `Введите контакты и сообщешие `
         email.error.hidden = false;
     }
 }

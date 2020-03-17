@@ -1,8 +1,8 @@
 object DMServer: TDMServer
   OldCreateOrder = False
   Encoding = esASCII
-  Height = 150
-  Width = 215
+  Height = 204
+  Width = 274
   object api: TDWServerEvents
     IgnoreInvalidParams = False
     Events = <

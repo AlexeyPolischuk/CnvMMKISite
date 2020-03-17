@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
-  uRESTDWServerEvents, Vcl.ExtCtrls;
+  uRESTDWServerEvents, Vcl.ExtCtrls, OverbyteIcsWSocket, OverbyteIcsWndControl,
+  OverbyteIcsHttpSrv, OverbyteIcsHttpAppServer;
 
 type
   TFMain = class(TForm)
@@ -62,15 +63,21 @@ end;
 procedure TFMain.FormCreate(Sender: TObject);
 begin
 Caption:='ВебСервер по Динамике цеха вер.'+GetVersionDate;
+//HttpServer1.DocDir:=ExtractFileDir(Application.ExeName);
   RESTServicePooler1.ServerMethodClass := TDMServer;
+ Memo1.Lines.Clear;
   StartStopServer(true);
   btnActivate.Caption := 'close';
-  Memo1.Lines.Clear;
+
 end;
 
 procedure TFMain.StartStopServer(AStart: Boolean);
 begin
   RESTServicePooler1.Active := AStart;
+// if AStart then
+//     HttpServer1.Start(true)
+//    else
+//    HttpServer1.Stop
 end;
 
 procedure TFMain.AddLogToMemo(RequestHeader: TStringList);

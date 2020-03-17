@@ -1,0 +1,66 @@
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+ly determine the server's fully qualified domain name, using fe80::91d3:3a52:782d:f4d5. Set the 'ServerName' directive globally to suppress this message
+[Tue Mar 17 14:00:40.044581 2020] [mpm_winnt:notice] [pid 9752:tid 760] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:00:40.044581 2020] [mpm_winnt:notice] [pid 9752:tid 760] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:00:40.044581 2020] [core:notice] [pid 9752:tid 760] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:00:40.046587 2020] [mpm_winnt:notice] [pid 9752:tid 760] AH00418: Parent: Created child process 8212
+AH00558: httpd.exe: Could not reliably determine the server's fully qualified domain name, using fe80::91d3:3a52:782d:f4d5. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd.exe: Could not reliably determine the server's fully qualified domain name, using fe80::91d3:3a52:782d:f4d5. Set the 'ServerName' directive globally to suppress this message
+[Tue Mar 17 14:00:40.381922 2020] [mpm_winnt:notice] [pid 8212:tid 732] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 17 14:04:18.606970 2020] [authz_core:error] [pid 8212:tid 1260] [client ::1:63295] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:04:59.554482 2020] [mpm_winnt:notice] [pid 9752:tid 760] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 17 14:05:09.389263 2020] [mpm_winnt:notice] [pid 8212:tid 732] AH00364: Child: All worker threads have exited.
+[Tue Mar 17 14:05:09.406515 2020] [mpm_winnt:notice] [pid 9752:tid 760] AH00430: Parent: Child process 8212 exited successfully.
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+pm_winnt:notice] [pid 5524:tid 600] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:05:30.470880 2020] [mpm_winnt:notice] [pid 5524:tid 600] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:05:30.470880 2020] [core:notice] [pid 5524:tid 600] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:05:30.473887 2020] [mpm_winnt:notice] [pid 5524:tid 600] AH00418: Parent: Created child process 12836
+[Tue Mar 17 14:05:30.793700 2020] [mpm_winnt:notice] [pid 12836:tid 560] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 17 14:05:34.829528 2020] [authz_core:error] [pid 12836:tid 1068] [client ::1:63353] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:05:44.923684 2020] [authz_core:error] [pid 12836:tid 1068] [client ::1:63360] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:07:39.296043 2020] [authz_core:error] [pid 12836:tid 1064] [client ::1:63411] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:08:42.652779 2020] [mpm_winnt:notice] [pid 5524:tid 600] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 17 14:08:44.654181 2020] [mpm_winnt:notice] [pid 12836:tid 560] AH00364: Child: All worker threads have exited.
+[Tue Mar 17 14:08:44.672932 2020] [mpm_winnt:notice] [pid 5524:tid 600] AH00430: Parent: Child process 12836 exited successfully.
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+pm_winnt:notice] [pid 11716:tid 612] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:08:47.902224 2020] [mpm_winnt:notice] [pid 11716:tid 612] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:08:47.902224 2020] [core:notice] [pid 11716:tid 612] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:08:47.903226 2020] [mpm_winnt:notice] [pid 11716:tid 612] AH00418: Parent: Created child process 6528
+[Tue Mar 17 14:08:48.193723 2020] [mpm_winnt:notice] [pid 6528:tid 492] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 17 14:08:54.194813 2020] [authz_core:error] [pid 6528:tid 1096] [client ::1:63444] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:12:04.482920 2020] [mpm_winnt:notice] [pid 11716:tid 612] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 17 14:12:06.484314 2020] [mpm_winnt:notice] [pid 6528:tid 492] AH00364: Child: All worker threads have exited.
+[Tue Mar 17 14:12:06.507506 2020] [mpm_winnt:notice] [pid 11716:tid 612] AH00430: Parent: Child process 6528 exited successfully.
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+pm_winnt:notice] [pid 8800:tid 660] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:12:15.084410 2020] [mpm_winnt:notice] [pid 8800:tid 660] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:12:15.084410 2020] [core:notice] [pid 8800:tid 660] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:12:15.086415 2020] [mpm_winnt:notice] [pid 8800:tid 660] AH00418: Parent: Created child process 13888
+[Tue Mar 17 14:12:15.364985 2020] [mpm_winnt:notice] [pid 13888:tid 480] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 17 14:12:28.451282 2020] [authz_core:error] [pid 13888:tid 1096] [client ::1:63546] AH01630: client denied by server configuration: E:/GitHub/ConvMMKISite/Site/
+[Tue Mar 17 14:13:10.762274 2020] [mpm_winnt:notice] [pid 8800:tid 660] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 17 14:13:30.542312 2020] [mpm_winnt:notice] [pid 13888:tid 480] AH00364: Child: All worker threads have exited.
+[Tue Mar 17 14:13:30.563110 2020] [mpm_winnt:notice] [pid 8800:tid 660] AH00430: Parent: Child process 13888 exited successfully.
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+pm_winnt:notice] [pid 6064:tid 612] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:13:33.394889 2020] [mpm_winnt:notice] [pid 6064:tid 612] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:13:33.394889 2020] [core:notice] [pid 6064:tid 612] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:13:33.396897 2020] [mpm_winnt:notice] [pid 6064:tid 612] AH00418: Parent: Created child process 12940
+[Tue Mar 17 14:13:33.663248 2020] [mpm_winnt:notice] [pid 12940:tid 552] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 17 14:16:45.932211 2020] [mpm_winnt:notice] [pid 6064:tid 612] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 17 14:16:47.933577 2020] [mpm_winnt:notice] [pid 12940:tid 552] AH00364: Child: All worker threads have exited.
+[Tue Mar 17 14:16:47.952833 2020] [mpm_winnt:notice] [pid 6064:tid 612] AH00430: Parent: Child process 12940 exited successfully.
+Starting the 'Apache2.4' service
+The 'Apache2.4' service is running.
+pm_winnt:notice] [pid 9004:tid 608] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Tue Mar 17 14:17:45.783811 2020] [mpm_winnt:notice] [pid 9004:tid 608] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Tue Mar 17 14:17:45.783811 2020] [core:notice] [pid 9004:tid 608] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Tue Mar 17 14:17:45.784815 2020] [mpm_winnt:notice] [pid 9004:tid 608] AH00418: Parent: Created child process 9976
+[Tue Mar 17 14:17:46.061458 2020] [mpm_winnt:notice] [pid 9976:tid 516] AH00354: Child: Starting 64 worker threads.
