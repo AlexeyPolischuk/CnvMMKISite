@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
   uRESTDWServerEvents, Vcl.ExtCtrls, OverbyteIcsWSocket, OverbyteIcsWndControl,
-  OverbyteIcsHttpSrv, OverbyteIcsHttpAppServer;
+  OverbyteIcsHttpSrv;
 
 type
   TFMain = class(TForm)

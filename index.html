@@ -37,12 +37,12 @@
                         Хим.Анализы</div>
                 </li>
                 <li class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Тема</div>
+                    <div class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Тема</div>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <div class="dropdown-item" id="theme-light">Светлая</div>
                         <div class="dropdown-item" id="theme-dark">Темная</div>
-                      </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -60,16 +60,16 @@
 
         <div class="container">
             <form action="" class="row mb-3 border-bottom border-2 border-info" id="him__form" hidden>
-                <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="him__npl" class=" col-6 col-form-label">№ плавки</label>
-                    <input type="number" min="100000" max="399999" class=" col-6 form-control" name="npl" id="him__npl">
+                <div class="col-12 col-md-6 col-lg-4 form-group row mr-0">
+                    <label for="him__npl" class=" col col-form-label">№ плавки</label>
+                    <input type="number" min="100000" max="399999" class=" col form-control" name="npl" id="him__npl">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 form-group row mr-0">
+                    <label for="him__dt" class=" col col-form-label">Дата</label>
+                    <input type="date" class=" col form-control" name="dt" id="him__dt">
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="him__dt" class=" col-6 col-form-label">Дата</label>
-                    <input type="date" class=" col-6 form-control" name="dt" id="him__dt">
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 form-group row ">
-                    <label for="him__type" class="col-6 col-form-label">Тип пробы</label>
+                    <label for="him__type" class="col col-form-label ">Тип пробы</label>
                     <select class="custom-select col-6 " name="type" id="him__type">
                         <option value="All" selected>Все</option>
                         <option value="По ходу">По ходу</option>
@@ -164,6 +164,7 @@
                     </textarea>
                     </div>
                     <button type="button" class="btn btn-secondary btn-sm" id="email__send">Отправить</button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="email__esc">Отмена</button>
                     <small class="warning" id="email__error" hidden>Ошибка в отправке</small>
                 </div>
             </form>

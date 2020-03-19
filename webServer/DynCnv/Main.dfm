@@ -70,15 +70,24 @@ object FMain: TFMain
     ServerParams.HasAuthentication = False
     ServerParams.UserName = 'testserver'
     ServerParams.Password = 'testserver'
+    SSLPrivateKeyFile = 
+      'e:\Install\Comp4delphi10\RestEasyObjects2298\Demos\Demos\SimpleS' +
+      'erver\Server\certificado\'
+    SSLCertFile = 
+      'e:\Install\Comp4delphi10\RestEasyObjects2298\Demos\Demos\SimpleS' +
+      'erver\Server\certificado\'
     SSLMethod = sslvSSLv2
-    SSLVersions = []
+    SSLVersions = [sslvSSLv2, sslvSSLv23, sslvSSLv3, sslvTLSv1, sslvTLSv1_1, sslvTLSv1_2]
     Encoding = esUtf8
     ServerContext = 'restdataware'
     RootPath = '/'
+    SSLRootCertFile = 
+      'e:\Install\Comp4delphi10\RestEasyObjects2298\Demos\Demos\SimpleS' +
+      'erver\Server\certificado\'
     SSLVerifyMode = []
     SSLVerifyDepth = 0
     ForceWelcomeAccess = False
-    CriptOptions.Use = False
+    CriptOptions.Use = True
     CriptOptions.Key = 'RDWBASEKEY256'
     MultiCORE = True
     Left = 208

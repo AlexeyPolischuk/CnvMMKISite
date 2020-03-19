@@ -28,3 +28,43 @@
 127.0.0.1 - - [19/Mar/2020:09:22:50 +0200] "\x16\x03\x01\x02" 400 226
 127.0.0.1 - - [19/Mar/2020:09:23:30 +0200] "\x16\x03\x01\x02" 400 226
 127.0.0.1 - - [19/Mar/2020:09:24:40 +0200] "\x16\x03\x01\x02" 400 226
+127.0.0.1 - - [19/Mar/2020:12:41:11 +0200] "GET /radide?BGToolbarColor=2D2D2D&radv=25.0&lang=EN HTTP/1.1" 404 196
+127.0.0.1 - - [19/Mar/2020:12:41:11 +0200] "GET /radide?radv=25.0&ToolBar=false&lang=EN HTTP/1.1" 404 196
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET / HTTP/1.1" 200 10051
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /css/style.css HTTP/1.1" 200 265
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /css/bootstrap.min.css HTTP/1.1" 200 159515
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /img/logos/linkedin-svgrepo-com.svg HTTP/1.1" 200 1273
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /img/cnv/1.jpg HTTP/1.1" 200 34114
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /img/logos/github.svg HTTP/1.1" 200 968
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /js/script.js HTTP/1.1" 200 14885
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /js/bootstrap.min.js HTTP/1.1" 200 60010
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /js/popper.min.js HTTP/1.1" 200 21257
+::1 - - [19/Mar/2020:13:50:42 +0200] "GET /js/jquery-3.4.1.slim.min.js HTTP/1.1" 200 85692
+::1 - - [19/Mar/2020:13:50:43 +0200] "GET /json/dyncnv.json HTTP/1.1" 200 183
+::1 - - [19/Mar/2020:13:50:43 +0200] "GET /favicon.ico HTTP/1.1" 404 196
+::1 - - [19/Mar/2020:13:50:43 +0200] "GET /img/cnv/4.jpg HTTP/1.1" 200 68150
+::1 - - [19/Mar/2020:13:50:43 +0200] "GET /img/cnv/3.jpg HTTP/1.1" 200 68150
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /index.html HTTP/1.1" 200 10051
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /css/style.css HTTP/1.1" 200 265
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /css/bootstrap.min.css HTTP/1.1" 200 159515
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /img/logos/linkedin-svgrepo-com.svg HTTP/1.1" 200 1273
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /img/cnv/1.jpg HTTP/1.1" 200 34114
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /js/popper.min.js HTTP/1.1" 200 21257
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /js/jquery-3.4.1.slim.min.js HTTP/1.1" 200 85692
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /js/bootstrap.min.js HTTP/1.1" 200 60010
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /js/script.js HTTP/1.1" 200 14885
+127.0.0.1 - - [19/Mar/2020:14:15:19 +0200] "GET /img/logos/github.svg HTTP/1.1" 200 968
+127.0.0.1 - - [19/Mar/2020:14:15:20 +0200] "GET /favicon.ico HTTP/1.1" 404 196
+127.0.0.1 - - [19/Mar/2020:14:15:25 +0200] "GET /js/bootstrap.min.js.map HTTP/1.1" 200 194435
+127.0.0.1 - - [19/Mar/2020:14:15:25 +0200] "GET /js/popper.min.js.map HTTP/1.1" 200 123754
+127.0.0.1 - - [19/Mar/2020:14:15:25 +0200] "GET /css/bootstrap.min.css.map HTTP/1.1" 200 641867
+127.0.0.1 - - [19/Mar/2020:14:15:31 +0200] "GET /favicon.ico HTTP/1.1" 404 196
+127.0.0.1 - - [19/Mar/2020:14:15:49 +0200] "GET /json/dyncnv.json HTTP/1.1" 200 183
+127.0.0.1 - - [19/Mar/2020:14:15:49 +0200] "GET /img/cnv/4.jpg HTTP/1.1" 200 68150
+127.0.0.1 - - [19/Mar/2020:14:15:49 +0200] "GET /img/cnv/3.jpg HTTP/1.1" 200 68150
+127.0.0.1 - - [19/Mar/2020:14:17:21 +0200] "GET /json/him.json HTTP/1.1" 200 4921
+127.0.0.1 - - [19/Mar/2020:14:17:27 +0200] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [19/Mar/2020:14:17:56 +0200] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [19/Mar/2020:14:17:59 +0200] "GET /css/dark.css HTTP/1.1" 200 209
+127.0.0.1 - - [19/Mar/2020:14:18:26 +0200] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [19/Mar/2020:14:19:03 +0200] "GET /index.html HTTP/1.1" 304 -

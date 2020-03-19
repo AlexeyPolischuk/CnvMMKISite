@@ -152,7 +152,11 @@ function footerClick(e) {
     }
     if (e.target.getAttribute('id') === 'email__send') {
         clickEmailSendBtn(e);
-
+    }
+    if (e.target.getAttribute('id') === 'email__esc') {
+        e.preventDefault();
+        email.btn.hidden = false;
+        email.form.hidden = true;
     }
 
 }
@@ -190,8 +194,9 @@ function clickEmailSendBtn(e) {
 
 function clickEmailBtn(e) {
     e.preventDefault();
-    email.btn.hiddenn = true;
+    email.btn.hidden = true;
     email.form.hidden = false;
+    email.contact.focus({ preventScroll: false });
 }
 
 
