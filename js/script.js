@@ -12,12 +12,10 @@ initVars();
 
 showCnv(1);
 // showMnlz(true);
-
+getTheme();
 dynMnlz.btn.addEventListener('click', mnlzClick);
 
 dynCnv.btn.addEventListener('click', cnvClick);
-
-him.btn.addEventListener('click', himClick);
 
 him.btn.addEventListener('click', himClick);
 
@@ -27,9 +25,41 @@ document.querySelector(` main`).addEventListener('click', e => mainClick(e));
 
 document.querySelector(` footer`).addEventListener('click', e => footerClick(e));
 
+document.querySelector(` nav`).addEventListener('click', e => navClick(e));
 
 
 
+
+
+
+function setLightTheme() {
+    localStorage.setItem('themeStyle', 'light');
+    getTheme();
+}
+
+function setDarkTheme() {
+    localStorage.setItem('themeStyle', 'dark');
+    getTheme();
+}
+
+function getTheme() {
+    let head = document.head;
+    let link = head.querySelector('#dark');
+    if (localStorage.getItem('themeStyle') === 'dark') {
+        if (!link) {
+            link = document.createElement('link');
+            link.id = 'dark';
+            link.rel = 'stylesheet';
+            link.href = './css/dark.css'; // ссылка на темный стиль
+            head.appendChild(link); // вставляем <link rel="stylesheet" href="light|dark.css"> в шапку страницы между темаги head
+        }
+    } // по умолчанию светлая тема
+    else {
+        if (link) {
+            head.removeChild(link);
+        }
+    }
+}
 
 function initVars() {
     dynCnv = {
@@ -106,7 +136,16 @@ function sendEmail(body, then, error) {
 
 //////////////////////////////////////////////////////////////
 ////////////////////Events////////////////////////////////////
+function navClick(e) {
+    if (e.target.getAttribute('id') === 'theme-dark') {
+        setDarkTheme();
+    }
+    if (e.target.getAttribute('id') === 'theme-light') {
+        setLightTheme();
 
+    }
+
+}
 function footerClick(e) {
     if (e.target.getAttribute('id') === 'email__btn') {
         clickEmailBtn(e);

@@ -1,0 +1,15 @@
+html {
+    background-color: #fefefe;
+}
+
+* {
+    background-color: inherit;
+}
+
+:root {
+    filter: invert(100%);
+}
+
+img:not([src*=".svg"]), .param-value, footer, nav {
+    filter: invert(100%);
+}

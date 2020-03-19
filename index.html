@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/dark.css"> -->
     <script src=" https://smtpjs.com/v3/smtp.js"></script>
     <base target="_blank">
     <title>Сайт конвертерного цеха ММКИ</title>
@@ -35,15 +36,19 @@
                     <div class="nav-link" type="button" id="him-btn">
                         Хим.Анализы</div>
                 </li>
-                <!-- <li class="nav-item">
-                        <a href="FTP.htm" class="nav-link" >
-                            FTP сервер</a>
-                    </li> -->
+                <li class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Тема</div>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <div class="dropdown-item" id="theme-light">Светлая</div>
+                        <div class="dropdown-item" id="theme-dark">Темная</div>
+                      </div>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <main role="main" class="flex-shrink-0 mb-3">
+    <main role="main" class="flex-shrink-0 pb-3">
         <section class=" text-center pt-5">
             <div class="container">
                 <h1 class="jumbotron-heading">Сайт конвертерного цеха ММКИ</h1>
