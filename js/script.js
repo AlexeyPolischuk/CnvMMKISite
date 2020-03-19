@@ -29,15 +29,17 @@ document.querySelector(` nav`).addEventListener('click', e => navClick(e));
 
 
 
-
+////////////////////////////themes//////////////////////
 
 
 function setLightTheme() {
+    $('.collapse').collapse('hide');
     localStorage.setItem('themeStyle', 'light');
     getTheme();
 }
 
 function setDarkTheme() {
+    $('.collapse').collapse('hide');
     localStorage.setItem('themeStyle', 'dark');
     getTheme();
 }
@@ -139,9 +141,11 @@ function sendEmail(body, then, error) {
 function navClick(e) {
     if (e.target.getAttribute('id') === 'theme-dark') {
         setDarkTheme();
+
     }
     if (e.target.getAttribute('id') === 'theme-light') {
         setLightTheme();
+
 
     }
 
