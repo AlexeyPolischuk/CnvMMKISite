@@ -92,3 +92,11 @@ pm_winnt:notice] [pid 4116:tid 140] AH00455: Apache/2.4.41 (Win64) configured --
 [Thu Mar 19 14:20:18.643221 2020] [core:notice] [pid 4116:tid 140] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
 [Thu Mar 19 14:20:18.645193 2020] [mpm_winnt:notice] [pid 4116:tid 140] AH00418: Parent: Created child process 13156
 [Thu Mar 19 14:20:18.940406 2020] [mpm_winnt:notice] [pid 13156:tid 532] AH00354: Child: Starting 64 worker threads.
+[Thu Apr 02 09:13:21.940397 2020] [mpm_winnt:notice] [pid 4116:tid 140] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Thu Apr 02 09:13:24.580809 2020] [mpm_winnt:notice] [pid 13156:tid 532] AH00364: Child: All worker threads have exited.
+[Thu Apr 02 09:13:32.666509 2020] [mpm_winnt:notice] [pid 4116:tid 140] AH00430: Parent: Child process 13156 exited successfully.
+[Thu Apr 02 09:14:26.794701 2020] [mpm_winnt:notice] [pid 5844:tid 612] AH00455: Apache/2.4.41 (Win64) configured -- resuming normal operations
+[Thu Apr 02 09:14:27.169713 2020] [mpm_winnt:notice] [pid 5844:tid 612] AH00456: Apache Lounge VS16 Server built: Aug  9 2019 16:46:32
+[Thu Apr 02 09:14:27.169713 2020] [core:notice] [pid 5844:tid 612] AH00094: Command line: 'e:\\GitHub\\ConvMMKISite\\Site\\webServer\\Apache24\\bin\\httpd.exe -d E:/GitHub/ConvMMKISite/Site/webServer/Apache24'
+[Thu Apr 02 09:14:27.169713 2020] [mpm_winnt:notice] [pid 5844:tid 612] AH00418: Parent: Created child process 6584
+[Thu Apr 02 09:14:27.560471 2020] [mpm_winnt:notice] [pid 6584:tid 592] AH00354: Child: Starting 64 worker threads.
